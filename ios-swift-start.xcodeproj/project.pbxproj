@@ -30,6 +30,9 @@
 		6DD042C3251C981600799D58 /* Interceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD042C2251C981600799D58 /* Interceptor.swift */; };
 		6DD042C5251C9C6800799D58 /* ErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD042C4251C9C6800799D58 /* ErrorHandler.swift */; };
 		6DD042C7251CF16D00799D58 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD042C6251CF16D00799D58 /* Config.swift */; };
+		6DD042CA252481A500799D58 /* PrimaryButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD042C9252481A500799D58 /* PrimaryButtonStyle.swift */; };
+		6DD042CC2524882D00799D58 /* LoginFieldViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD042CB2524882D00799D58 /* LoginFieldViewModifier.swift */; };
+		6DD042CE25248D4100799D58 /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD042CD25248D4100799D58 /* Color+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +72,9 @@
 		6DD042C2251C981600799D58 /* Interceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Interceptor.swift; sourceTree = "<group>"; };
 		6DD042C4251C9C6800799D58 /* ErrorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHandler.swift; sourceTree = "<group>"; };
 		6DD042C6251CF16D00799D58 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		6DD042C9252481A500799D58 /* PrimaryButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButtonStyle.swift; sourceTree = "<group>"; };
+		6DD042CB2524882D00799D58 /* LoginFieldViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFieldViewModifier.swift; sourceTree = "<group>"; };
+		6DD042CD25248D4100799D58 /* Color+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,6 +171,7 @@
 		6DD042752518FACA00799D58 /* pres */ = {
 			isa = PBXGroup;
 			children = (
+				6DD042C82524818700799D58 /* style */,
 				6DD04289251B66A200799D58 /* component */,
 				6DD042772518FB9F00799D58 /* login */,
 				6DD04283251A525500799D58 /* PresAssembly.swift */,
@@ -240,6 +247,16 @@
 				6DD042BC251BB76300799D58 /* User.swift */,
 			);
 			path = model;
+			sourceTree = "<group>";
+		};
+		6DD042C82524818700799D58 /* style */ = {
+			isa = PBXGroup;
+			children = (
+				6DD042C9252481A500799D58 /* PrimaryButtonStyle.swift */,
+				6DD042CB2524882D00799D58 /* LoginFieldViewModifier.swift */,
+				6DD042CD25248D4100799D58 /* Color+Extension.swift */,
+			);
+			path = style;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -350,15 +367,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6DD042CA252481A500799D58 /* PrimaryButtonStyle.swift in Sources */,
 				6DD04288251B669800799D58 /* DomainAssembly.swift in Sources */,
 				6DD042C3251C981600799D58 /* Interceptor.swift in Sources */,
 				6DD04284251A525500799D58 /* PresAssembly.swift in Sources */,
 				6DD04286251A528200799D58 /* Injector.swift in Sources */,
+				6DD042CC2524882D00799D58 /* LoginFieldViewModifier.swift in Sources */,
 				6DD042C7251CF16D00799D58 /* Config.swift in Sources */,
 				6DD0428D251B673A00799D58 /* ValidatePasswordUseCase.swift in Sources */,
 				6DD042C5251C9C6800799D58 /* ErrorHandler.swift in Sources */,
 				6DD042522518FA4800799D58 /* AppDelegate.swift in Sources */,
 				6DD04291251BA61600799D58 /* LoginUseCase.swift in Sources */,
+				6DD042CE25248D4100799D58 /* Color+Extension.swift in Sources */,
 				6DD042542518FA4800799D58 /* SceneDelegate.swift in Sources */,
 				6DD042792518FBB100799D58 /* LoginView.swift in Sources */,
 				6DD042BD251BB76300799D58 /* User.swift in Sources */,

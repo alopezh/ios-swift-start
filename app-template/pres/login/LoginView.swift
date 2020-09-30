@@ -14,14 +14,30 @@ struct LoginView: View {
     
     var body: some View {
         VStack() {
+            
             Text("iOS App Template")
-            Image("iosapptemplate")
+            Text("Log Into Your Account")
+                .font(.title)
+                .padding(.bottom, 30)
+        
+            
             TextField("Email", text: $loginViewModel.email)
-            TextField("Password", text: $loginViewModel.password)
+                .modifier(LoginFieldViewModifier())
+                .textContentType(.emailAddress)
+                
+            SecureField("Password", text: $loginViewModel.password)
+                .modifier(LoginFieldViewModifier())
+                .textContentType(.password)
+            
             Button(action: {  self.loginViewModel.submmit() } ) {
-                Text("Sign up")
+                Text("Log In")
             }
-        }
+            .buttonStyle(PrimaryButtonStyle())
+            .disabled(!loginViewModel.loginEnabled)
+
+            
+        }.padding()
+        
     }
 }
 
