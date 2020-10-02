@@ -23,7 +23,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let viewRouter = Injector.shared.resolve(ViewRouter.self)!
         let contentView = ContentView()
             .environmentObject(viewRouter)
-
+        viewRouter.navigate(to: .login)
+        
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)

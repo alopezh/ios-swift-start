@@ -15,12 +15,21 @@ class ViewRouter: ObservableObject {
 
     let objectWillChange = PassthroughSubject<ViewRouter,Never>()
 
-    var currentPage: String = "login" {
+    private(set) var currentPage: String = "" {
         didSet {
             withAnimation() {
                 objectWillChange.send(self)
             }
         }
+    }
+    
+    func navigate(to: Page) {
+        currentPage = to.rawValue
+    }
+    
+    enum Page: String {
+        case home
+        case login
     }
     
 }

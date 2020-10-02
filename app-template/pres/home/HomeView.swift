@@ -17,7 +17,7 @@ struct HomeView: View {
     var body: some View { 
         VStack {
             Text("Hello ")
-            Button(action: {self.viewRouter.currentPage = "login"}) {
+            Button(action: {self.viewRouter.navigate(to: .login)}) {
                 Text("back")
             }
         }

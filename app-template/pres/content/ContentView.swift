@@ -14,10 +14,10 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
-            if viewRouter.currentPage == "login" {
-                LoginView().transition(.scale)
-            } else {
-                HomeView().transition(.scale)
+            if viewRouter.currentPage == ViewRouter.Page.login.rawValue {
+                LoginView().transition(.offset(y: 500))
+            } else if viewRouter.currentPage == ViewRouter.Page.login.rawValue {
+                HomeView()
             }
         }
     }
