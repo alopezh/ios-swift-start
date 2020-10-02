@@ -12,7 +12,7 @@ struct LoginView: View {
     
     @ObservedObject private var loginViewModel = LoginViewModel()
     
-    @EnvironmentObject var viewRouter: ViewRouter
+    @EnvironmentObject private var viewRouter: ViewRouter
     
     var body: some View {
         VStack() {

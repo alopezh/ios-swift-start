@@ -17,4 +17,8 @@ class SessionUseCase {
         sessionSubject.send(Session(token: token))
     }
     
+    func closeSession() {
+        sessionSubject.send(nil)
+    }
+    
 }

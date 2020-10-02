@@ -16,10 +16,10 @@ class LoginViewModel : ObservableObject {
     private var cancelables = Set<AnyCancellable>()
     
     @Inject
-    private var loginUseCase: LoginUseCase!
+    private var loginUseCase: LoginUseCase
     
     @Inject
-    private var viewRouter: ViewRouter!
+    private var viewRouter: ViewRouter
     
     @Published var email = ""
     @Published var password = ""

@@ -17,7 +17,8 @@ class DomainAssembly : Assembly {
         }.inObjectScope(.container)
         
         container.register(LoginUseCase.self) { r in
-            LoginUseCaseImpl(userApi: r.resolve(UserApi.self)!)
+            LoginUseCaseImpl(userApi: r.resolve(UserApi.self)!,
+                             sessionUseCase: r.resolve(SessionUseCase.self)!)
         }.inObjectScope(.container)
         
         container.register(SessionUseCase.self) { r in

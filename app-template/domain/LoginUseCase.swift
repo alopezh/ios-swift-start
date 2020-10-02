@@ -14,14 +14,21 @@ protocol LoginUseCase {
 }
 
 class LoginUseCaseImpl: LoginUseCase {
+    
     private let userApi: UserApi
     
-    init(userApi: UserApi) {
+    private let sessionUseCase: SessionUseCase
+    
+    init(userApi: UserApi, sessionUseCase: SessionUseCase) {
         self.userApi = userApi
+        self.sessionUseCase = sessionUseCase
     }
     
     func login(user: User) -> AnyPublisher<User,HttpError> {
-        userApi.login(user: user)
+        userApi.login(user: user).map { [weak self] user in
+            self?.sessionUseCase.createSession(token: "Token")
+            return user
+        }.eraseToAnyPublisher()
     }
     
 }

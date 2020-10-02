@@ -10,13 +10,15 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @EnvironmentObject var viewRouter: ViewRouter
+    @EnvironmentObject private var viewRouter: ViewRouter
+    
+    @ObservedObject private var contentViewModel = ContentViewModel()
     
     var body: some View {
         VStack {
             if viewRouter.currentPage == ViewRouter.Page.login.rawValue {
                 LoginView().transition(.offset(y: 500))
-            } else if viewRouter.currentPage == ViewRouter.Page.login.rawValue {
+            } else if viewRouter.currentPage == ViewRouter.Page.home.rawValue {
                 HomeView()
             }
         }
