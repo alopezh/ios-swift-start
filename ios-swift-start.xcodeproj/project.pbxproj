@@ -15,7 +15,6 @@
 		6DD042792518FBB100799D58 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD042782518FBB100799D58 /* LoginView.swift */; };
 		6DD0427B2518FF7900799D58 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD0427A2518FF7900799D58 /* LoginViewModel.swift */; };
 		6DD0427E251903E100799D58 /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = 6DD0427D251903E100799D58 /* Swinject */; };
-		6DD04280251A4DEA00799D58 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DD0427F251A4DEA00799D58 /* Default-568h@2x.png */; };
 		6DD04284251A525500799D58 /* PresAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD04283251A525500799D58 /* PresAssembly.swift */; };
 		6DD04286251A528200799D58 /* Injector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD04285251A528200799D58 /* Injector.swift */; };
 		6DD04288251B669800799D58 /* DomainAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD04287251B669800799D58 /* DomainAssembly.swift */; };
@@ -63,7 +62,6 @@
 		6DD0426A2518FA4A00799D58 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6DD042782518FBB100799D58 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		6DD0427A2518FF7900799D58 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
-		6DD0427F251A4DEA00799D58 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		6DD04281251A4E9800799D58 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6DD04283251A525500799D58 /* PresAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresAssembly.swift; sourceTree = "<group>"; };
 		6DD04285251A528200799D58 /* Injector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Injector.swift; sourceTree = "<group>"; };
@@ -113,7 +111,6 @@
 		6DD042452518FA4700799D58 = {
 			isa = PBXGroup;
 			children = (
-				6DD0427F251A4DEA00799D58 /* Default-568h@2x.png */,
 				6DD042502518FA4700799D58 /* app-template */,
 				6DD042672518FA4A00799D58 /* app-template-tests */,
 				6DD0424F2518FA4700799D58 /* Products */,
@@ -385,7 +382,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				6DD0425E2518FA4A00799D58 /* LaunchScreen.storyboard in Resources */,
-				6DD04280251A4DEA00799D58 /* Default-568h@2x.png in Resources */,
 				6DD0425B2518FA4A00799D58 /* Preview Assets.xcassets in Resources */,
 				6DD042582518FA4A00799D58 /* Assets.xcassets in Resources */,
 			);
