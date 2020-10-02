@@ -39,7 +39,6 @@
 		6DD042DB2524E91600799D58 /* SessionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD042DA2524E91600799D58 /* SessionUseCase.swift */; };
 		6DD042DE2525FDE200799D58 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD042DD2525FDE200799D58 /* HomeViewModel.swift */; };
 		6DD042E0252632B800799D58 /* ViewRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD042DF252632B800799D58 /* ViewRouter.swift */; };
-		6DD042E22527255500799D58 /* ViewA.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD042E12527255400799D58 /* ViewA.swift */; };
 		6DD042E52527664D00799D58 /* InjectPropertyWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = 6DD042E42527664D00799D58 /* InjectPropertyWrapper */; };
 /* End PBXBuildFile section */
 
@@ -89,7 +88,6 @@
 		6DD042DA2524E91600799D58 /* SessionUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionUseCase.swift; sourceTree = "<group>"; };
 		6DD042DD2525FDE200799D58 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		6DD042DF252632B800799D58 /* ViewRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewRouter.swift; sourceTree = "<group>"; };
-		6DD042E12527255400799D58 /* ViewA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewA.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -284,7 +282,6 @@
 			children = (
 				6DD042D02524E61D00799D58 /* HomeView.swift */,
 				6DD042DD2525FDE200799D58 /* HomeViewModel.swift */,
-				6DD042E12527255400799D58 /* ViewA.swift */,
 			);
 			path = home;
 			sourceTree = "<group>";
@@ -427,7 +424,6 @@
 				6DD042BD251BB76300799D58 /* User.swift in Sources */,
 				6DD042D12524E61D00799D58 /* HomeView.swift in Sources */,
 				6DD042BF251BBCA000799D58 /* HttpError.swift in Sources */,
-				6DD042E22527255500799D58 /* ViewA.swift in Sources */,
 				6DD0427B2518FF7900799D58 /* LoginViewModel.swift in Sources */,
 				6DD042D72524E67F00799D58 /* Session.swift in Sources */,
 				6DD042DE2525FDE200799D58 /* HomeViewModel.swift in Sources */,

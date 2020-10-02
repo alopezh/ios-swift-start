@@ -9,15 +9,33 @@
 import SwiftUI
 
 struct PrimaryButtonStyle: ButtonStyle {
+    
+    private let isEnabled: Bool
+    
+    init(isEnabled: Bool = true) {
+        self.isEnabled = isEnabled
+    }
  
     func makeBody(configuration: Self.Configuration) -> some View {
-        configuration.label
+        
+        let color = isEnabled ? LinearGradient(gradient: Gradient(colors: [.primaryColor, .buttonGradientEnd]), startPoint: .bottomLeading, endPoint: .topTrailing) :
+            LinearGradient(gradient: Gradient(colors: [.gray, .buttonGradientEnd]), startPoint: .bottomLeading, endPoint: .topTrailing)
+        
+        return configuration.label
             .frame(minWidth: 0, maxWidth: .infinity)
             .padding(10)
             .foregroundColor(.white)
-            .background(LinearGradient(gradient: Gradient(colors: [.primaryColor, .buttonGradientEnd]), startPoint: .bottomLeading, endPoint: .topTrailing))
+            .background(color)
             .cornerRadius(5)
         }
+}
+
+struct PrimaryButtonViewModifier: ViewModifier {
+    @Environment(\.isEnabled) var isEnabled
+    
+    func body(content: Content) -> some View {
+        return content.buttonStyle(PrimaryButtonStyle(isEnabled: isEnabled))
+    }
 }
 
 struct PrimaryButtonStyle_Previews: PreviewProvider {

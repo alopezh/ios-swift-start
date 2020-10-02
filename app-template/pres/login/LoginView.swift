@@ -36,7 +36,7 @@ struct LoginView: View {
             }) {
                 Text("Log In")
             }
-            .buttonStyle(PrimaryButtonStyle())
+            .modifier(PrimaryButtonViewModifier())
             .disabled(!loginViewModel.loginEnabled)
             
         }.padding()
