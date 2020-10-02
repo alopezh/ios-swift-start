@@ -10,7 +10,9 @@ import SwiftUI
 
 struct LoginView: View {
     
-    @ObservedObject private(set) var loginViewModel: LoginViewModel
+    @ObservedObject private var loginViewModel = LoginViewModel()
+    
+    @EnvironmentObject var viewRouter: ViewRouter
     
     var body: some View {
         VStack() {
@@ -29,12 +31,13 @@ struct LoginView: View {
                 .modifier(LoginFieldViewModifier())
                 .textContentType(.password)
             
-            Button(action: {  self.loginViewModel.submmit() } ) {
+            Button(action: {
+                self.loginViewModel.submmit()
+            }) {
                 Text("Log In")
             }
             .buttonStyle(PrimaryButtonStyle())
             .disabled(!loginViewModel.loginEnabled)
-
             
         }.padding()
         
@@ -43,6 +46,6 @@ struct LoginView: View {
 
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginView(loginViewModel: LoginViewModel())
+        LoginView()
     }
 }

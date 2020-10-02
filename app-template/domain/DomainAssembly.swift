@@ -11,12 +11,19 @@ import Swinject
 
 class DomainAssembly : Assembly {
     func assemble(container: Container) {
+        
         container.register(ValidatePasswordUseCase.self) { _ in
             ValidatePasswordUseCaseImpl()
-        }
+        }.inObjectScope(.container)
+        
         container.register(LoginUseCase.self) { r in
             LoginUseCaseImpl(userApi: r.resolve(UserApi.self)!)
-        }
+        }.inObjectScope(.container)
+        
+        container.register(SessionUseCase.self) { r in
+            SessionUseCase()
+        }.inObjectScope(.container)
+        
     }
     
 }

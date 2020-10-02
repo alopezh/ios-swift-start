@@ -7,18 +7,24 @@
 //
 
 import Foundation
+import SwiftUI
 import Combine
+import InjectPropertyWrapper
 
 class LoginViewModel : ObservableObject {
+    
+    private var cancelables = Set<AnyCancellable>()
+    
+    @Inject
+    private var loginUseCase: LoginUseCase!
+    
+    @Inject
+    private var viewRouter: ViewRouter!
     
     @Published var email = ""
     @Published var password = ""
     
     @Published var loginEnabled = false
-    
-    var loginUseCase: LoginUseCase!
-    
-    private var cancelables = Set<AnyCancellable>()
     
     init() {
         $email.map { [weak self] email in
@@ -42,12 +48,16 @@ class LoginViewModel : ObservableObject {
             })
         .subscribe(on: DispatchQueue.global())
         .receive(on: DispatchQueue.main)
-        .sink(receiveValue: { debugPrint("Succes: \($0)") })
+        .sink(receiveValue: {
+            self.viewRouter.currentPage = "home"
+            debugPrint("Succes: \($0)")
+        })
         .store(in: &cancelables)
     }
     
     private func isDataValid(_ email: String, _ password: String) -> Bool {
         !email.isEmpty && !password.isEmpty
     }
+    
     
 }
