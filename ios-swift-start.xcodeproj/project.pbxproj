@@ -33,6 +33,7 @@
 		6DD042CA252481A500799D58 /* PrimaryButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD042C9252481A500799D58 /* PrimaryButtonStyle.swift */; };
 		6DD042CC2524882D00799D58 /* LoginFieldViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD042CB2524882D00799D58 /* LoginFieldViewModifier.swift */; };
 		6DD042CE25248D4100799D58 /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD042CD25248D4100799D58 /* Color+Extension.swift */; };
+		6DD042E52527664D00799D58 /* InjectPropertyWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = 6DD042E42527664D00799D58 /* InjectPropertyWrapper */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +83,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6DD042E52527664D00799D58 /* InjectPropertyWrapper in Frameworks */,
 				6DD0427E251903E100799D58 /* Swinject in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -277,6 +279,7 @@
 			name = "ios-swift-start";
 			packageProductDependencies = (
 				6DD0427D251903E100799D58 /* Swinject */,
+				6DD042E42527664D00799D58 /* InjectPropertyWrapper */,
 			);
 			productName = "ios-swift-start";
 			productReference = 6DD0424E2518FA4700799D58 /* ios-swift-start.app */;
@@ -330,6 +333,7 @@
 			mainGroup = 6DD042452518FA4700799D58;
 			packageReferences = (
 				6DD0427C251903E100799D58 /* XCRemoteSwiftPackageReference "Swinject" */,
+				6DD042E32527664D00799D58 /* XCRemoteSwiftPackageReference "InjectPropertyWrapper" */,
 			);
 			productRefGroup = 6DD0424F2518FA4700799D58 /* Products */;
 			projectDirPath = "";
@@ -661,6 +665,14 @@
 				minimumVersion = 2.7.1;
 			};
 		};
+		6DD042E32527664D00799D58 /* XCRemoteSwiftPackageReference "InjectPropertyWrapper" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/egeniq/InjectPropertyWrapper";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.3.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -668,6 +680,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 6DD0427C251903E100799D58 /* XCRemoteSwiftPackageReference "Swinject" */;
 			productName = Swinject;
+		};
+		6DD042E42527664D00799D58 /* InjectPropertyWrapper */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6DD042E32527664D00799D58 /* XCRemoteSwiftPackageReference "InjectPropertyWrapper" */;
+			productName = InjectPropertyWrapper;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

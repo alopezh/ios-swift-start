@@ -13,15 +13,10 @@ class PresAssembly: Assembly {
     
     func assemble(container: Container) {
         
-        container.register(LoginViewModel.self) { r in
-            let loginVM = LoginViewModel()
-            loginVM.loginUseCase = r.resolve(LoginUseCase.self)!
-            return loginVM
-        }
-        
-        container.register(LoginView.self) { r in
-            LoginView(loginViewModel: r.resolve(LoginViewModel.self)!)
-        }
+        container.register(ViewRouter.self) { _ in
+            ViewRouter()
+        }.inObjectScope(.container)
+                
     }
     
 }

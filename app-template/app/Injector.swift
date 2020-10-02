@@ -8,15 +8,21 @@
 
 import Foundation
 import Swinject
+import InjectPropertyWrapper
 
-class Injector  {
-    
+class Injector : InjectPropertyWrapper.Resolver {
+
     static let shared = Injector()
     
     private let assembler = Assembler([PresAssembly(), DomainAssembly(), DataAssembly()])
     
-    func resolve<Service>(_ serviceType: Service.Type) -> Service? {
-        return assembler.resolver.resolve(serviceType)
+    init() {
+        InjectSettings.resolver = self
+    }
+    
+    func resolve<T>(_ type: T.Type, name: String? = nil) -> T? {
+        return assembler.resolver.resolve(type, name: name)
     }
     
 }
+
