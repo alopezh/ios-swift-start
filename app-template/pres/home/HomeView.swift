@@ -10,16 +10,18 @@ import SwiftUI
 
 struct HomeView: View {
     
-    @ObservedObject private var homeViewModel: HomeViewModel = HomeViewModel()
-    
-    @EnvironmentObject var viewRouter: ViewRouter
-    
     var body: some View { 
-        VStack {
-            Text("Hello ")
-            Button(action: {self.viewRouter.navigate(to: .login)}) {
-                Text("back")
-            }
+        TabView {
+            TaskListView()
+                .tabItem {
+                    Image(systemName: "1.circle")
+                    Text("First")
+                }.tag(0)
+            SettingsView()
+                .tabItem {
+                    Image(systemName: "2.circle")
+                    Text("Second")
+                }.tag(1)
         }
     }
 }
