@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6D8443FA252A099900F92BCA /* CheckBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D8443F9252A099900F92BCA /* CheckBoxView.swift */; };
+		6D8443FF252CCD6100F92BCA /* OptionalBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D8443FE252CCD6100F92BCA /* OptionalBinding.swift */; };
 		6DD042522518FA4800799D58 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD042512518FA4800799D58 /* AppDelegate.swift */; };
 		6DD042542518FA4800799D58 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD042532518FA4800799D58 /* SceneDelegate.swift */; };
 		6DD042582518FA4A00799D58 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6DD042572518FA4A00799D58 /* Assets.xcassets */; };
@@ -44,7 +45,7 @@
 		6DD042F12528C3C600799D58 /* TaskListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD042F02528C3C600799D58 /* TaskListView.swift */; };
 		6DD042F32528C49300799D58 /* TaskRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD042F22528C49300799D58 /* TaskRow.swift */; };
 		6DD042F52528C4A500799D58 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD042F42528C4A500799D58 /* Task.swift */; };
-		6DD042F72528C6AF00799D58 /* TasksViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD042F62528C6AF00799D58 /* TasksViewModel.swift */; };
+		6DD042F72528C6AF00799D58 /* TaskListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD042F62528C6AF00799D58 /* TaskListViewModel.swift */; };
 		6DD042FA2528CCA800799D58 /* TaskDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD042F92528CCA800799D58 /* TaskDetailView.swift */; };
 /* End PBXBuildFile section */
 
@@ -60,6 +61,7 @@
 
 /* Begin PBXFileReference section */
 		6D8443F9252A099900F92BCA /* CheckBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxView.swift; sourceTree = "<group>"; };
+		6D8443FE252CCD6100F92BCA /* OptionalBinding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionalBinding.swift; sourceTree = "<group>"; };
 		6DD0424E2518FA4700799D58 /* ios-swift-start.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ios-swift-start.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6DD042512518FA4800799D58 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6DD042532518FA4800799D58 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -98,7 +100,7 @@
 		6DD042F02528C3C600799D58 /* TaskListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListView.swift; sourceTree = "<group>"; };
 		6DD042F22528C49300799D58 /* TaskRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskRow.swift; sourceTree = "<group>"; };
 		6DD042F42528C4A500799D58 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
-		6DD042F62528C6AF00799D58 /* TasksViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksViewModel.swift; sourceTree = "<group>"; };
+		6DD042F62528C6AF00799D58 /* TaskListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListViewModel.swift; sourceTree = "<group>"; };
 		6DD042F92528CCA800799D58 /* TaskDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -125,6 +127,7 @@
 		6D8443FB252A238800F92BCA /* extensions */ = {
 			isa = PBXGroup;
 			children = (
+				6D8443FE252CCD6100F92BCA /* OptionalBinding.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -331,7 +334,7 @@
 			children = (
 				6DD042F02528C3C600799D58 /* TaskListView.swift */,
 				6DD042F22528C49300799D58 /* TaskRow.swift */,
-				6DD042F62528C6AF00799D58 /* TasksViewModel.swift */,
+				6DD042F62528C6AF00799D58 /* TaskListViewModel.swift */,
 				6DD042F92528CCA800799D58 /* TaskDetailView.swift */,
 			);
 			path = tasks;
@@ -450,7 +453,7 @@
 				6DD04288251B669800799D58 /* DomainAssembly.swift in Sources */,
 				6DD042C3251C981600799D58 /* Interceptor.swift in Sources */,
 				6DD042E0252632B800799D58 /* ViewRouter.swift in Sources */,
-				6DD042F72528C6AF00799D58 /* TasksViewModel.swift in Sources */,
+				6DD042F72528C6AF00799D58 /* TaskListViewModel.swift in Sources */,
 				6DD04284251A525500799D58 /* PresAssembly.swift in Sources */,
 				6DD042E7252790EC00799D58 /* ContentViewModel.swift in Sources */,
 				6DD04286251A528200799D58 /* Injector.swift in Sources */,
@@ -475,6 +478,7 @@
 				6DD042DB2524E91600799D58 /* SessionUseCase.swift in Sources */,
 				6DD0428B251B66C200799D58 /* DataAssembly.swift in Sources */,
 				6D8443FA252A099900F92BCA /* CheckBoxView.swift in Sources */,
+				6D8443FF252CCD6100F92BCA /* OptionalBinding.swift in Sources */,
 				6DD042C1251BC22400799D58 /* HttpApiRequest.swift in Sources */,
 				6DD042BB251BB71E00799D58 /* UserApi.swift in Sources */,
 				6DD042EC2527B2C800799D58 /* SettingsView.swift in Sources */,

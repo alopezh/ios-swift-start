@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Task: Identifiable {
+struct Task: Hashable, Codable, Identifiable {
     
     var id: String
     

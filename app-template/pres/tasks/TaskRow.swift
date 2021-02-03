@@ -9,16 +9,17 @@
 import SwiftUI
 
 struct TaskRow: View {
-    @Binding var task: Task
     
+    @Binding var task: Task
+
     var body: some View {
         HStack {
             Text(task.name)
-//            TODO change to custom checkbox
             Spacer()
-            Toggle("", isOn: $task.done)
-        }.padding()
+            Toggle("", isOn: $task.done )
+        }
     }
+
 }
 
 struct TaskRow_Previews: PreviewProvider {
@@ -26,7 +27,7 @@ struct TaskRow_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             TaskRow(task: .constant(Task(id: "1", name: "Task 1", description: "Description", done: false)))
-            TaskRow(task: .constant( Task(id: "2", name: "Task 2", description: "Description", done: true)))
+            TaskRow(task: .constant(Task(id: "2", name: "Task 2", description: "Description", done: true)))
         }.previewLayout(.fixed(width: 300, height: 70))
     }
 }
