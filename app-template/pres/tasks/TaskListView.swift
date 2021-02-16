@@ -21,7 +21,9 @@ struct TaskListView: View {
                 }.padding()
                 List {
                     ForEach(viewModel.filter(), id: \.self) { task in
-                    TaskRow(task: task)
+                        NavigationLink(destination: TaskDetailView(task: task)) {
+                            TaskRow(task: task)
+                        }
                     }
                 }
             }.navigationBarTitle(Text("Tasks"))

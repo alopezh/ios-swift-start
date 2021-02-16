@@ -10,12 +10,13 @@ import SwiftUI
 
 struct TaskDetailView: View {
     
-    var task: TaskViewModel
+    @ObservedObject var task: TaskViewModel
     
     var body: some View {
         VStack {
             Text(task.name)
             Text(task.description)
+            Toggle("", isOn: $task.done )
         }
         
     }
