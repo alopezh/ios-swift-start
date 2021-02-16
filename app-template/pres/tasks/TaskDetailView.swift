@@ -10,7 +10,7 @@ import SwiftUI
 
 struct TaskDetailView: View {
     
-    var task: Task
+    var task: TaskViewModel
     
     var body: some View {
         VStack {
@@ -23,6 +23,6 @@ struct TaskDetailView: View {
 
 struct TaskDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        TaskDetailView(task: Task(id: "1", name: "Task 1", description: "Description", done: false))
+        TaskDetailView(task: TaskViewModel(name: "Task 1", description: "Description"))
     }
 }

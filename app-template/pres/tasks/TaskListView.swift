@@ -10,21 +10,23 @@ import SwiftUI
 
 struct TaskListView: View {
     
-    @ObservedObject private var taskListViewModel = TaskListViewModel()
-        
+    @ObservedObject private var viewModel = TaskListViewModel()
+
     var body: some View {
         
         NavigationView {
             VStack {
-                Toggle(isOn: $taskListViewModel.showNotDoneOnly) {
-                    Text("Undone only")
+                Toggle(isOn: $viewModel.filterDone) {
+                    Text("Filter done")
                 }.padding()
                 List {
-                    ForEach(taskListViewModel.filterdTasks.indices, id: \.self) { idx in
-                        TaskRow(task: $taskListViewModel.filterdTasks[idx])
+                    ForEach(viewModel.filter(), id: \.self) { task in
+                    TaskRow(task: task)
                     }
                 }
             }.navigationBarTitle(Text("Tasks"))
+        }.onAppear {
+            viewModel.fetchTasks()
         }
     }
 }

@@ -13,28 +13,28 @@ class TaskListViewModel : ObservableObject  {
     
     private var cancelables = Set<AnyCancellable>()
     
-    private var allTasks: [Task] =
-        [ Task(id: "1",name: "Task1", description: "Description", done: false),
-          Task(id: "2",name: "Task2", description: "Description", done: false)]
-    
-    @Published var showNotDoneOnly = false
-    
-    @Published var filterdTasks: [Task] = []
+    @Published var filterDone = false
 
-    init() {
-        
-        filterdTasks = allTasks
+    @Published var tasks: [TaskViewModel] = []
+    
+    func filter() -> [TaskViewModel]  {
+        filterDone ? tasks.filter { !$0.done } : tasks
+    }
+    
+    func fetchTasks() {
+        let id = 0
+        [
+         TaskViewModel(name: "Task \(id)", description: "Description"),
+         TaskViewModel(name: "Task \(id + 1)", description: "Description")
+        ].forEach { add(task: $0) }
+    }
+    
+    private func add(task: TaskViewModel) {
+        tasks.append(task)
+        task.objectWillChange
+            .sink { self.objectWillChange.send() }
+            .store(in: &cancelables)
 
-        $showNotDoneOnly.map { notDoneOnly in
-            if notDoneOnly {
-                return self.filterdTasks.filter { task in
-                    !task.done
-                }
-            }
-            return self.allTasks
-        }.assign(to: \.filterdTasks, on: self)
-        .store(in: &cancelables)
-        
     }
     
 }

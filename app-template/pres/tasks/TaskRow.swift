@@ -10,7 +10,7 @@ import SwiftUI
 
 struct TaskRow: View {
     
-    @Binding var task: Task
+    @ObservedObject var task: TaskViewModel
 
     var body: some View {
         HStack {
@@ -26,8 +26,8 @@ struct TaskRow_Previews: PreviewProvider {
     
     static var previews: some View {
         Group {
-            TaskRow(task: .constant(Task(id: "1", name: "Task 1", description: "Description", done: false)))
-            TaskRow(task: .constant(Task(id: "2", name: "Task 2", description: "Description", done: true)))
+            TaskRow(task: TaskViewModel( name: "Task 1", description: "Description"))
+            TaskRow(task: TaskViewModel( name: "Task 2", description: "Description"))
         }.previewLayout(.fixed(width: 300, height: 70))
     }
 }
