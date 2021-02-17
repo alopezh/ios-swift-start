@@ -30,6 +30,7 @@ class ViewRouter: ObservableObject {
     enum Page: String {
         case home
         case login
+        case taskList
     }
     
 }

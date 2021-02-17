@@ -8,10 +8,14 @@
 
 import Foundation
 import Combine
+import InjectPropertyWrapper
 
 class TaskListViewModel : ObservableObject  {
     
     private var cancelables = Set<AnyCancellable>()
+    
+    @Inject
+    private var tasksUseCase: TasksUseCase
     
     @Published var filterDone = false
 
@@ -22,19 +26,22 @@ class TaskListViewModel : ObservableObject  {
     }
     
     func fetchTasks() {
-        let id = 0
-        [
-         TaskViewModel(name: "Task \(id)", description: "Description"),
-         TaskViewModel(name: "Task \(id + 1)", description: "Description")
-        ].forEach { add(task: $0) }
+        tasksUseCase.getTasks()
+        .map { tasks in
+            tasks.map { self.map(task: $0) }
+        }.catch { error -> AnyPublisher<[TaskViewModel], Never> in
+            debugPrint("Error \(error)")
+            return Empty(completeImmediately: true).eraseToAnyPublisher()
+        }.assign(to: \.tasks, on: self)
+        .store(in: &cancelables)
     }
     
-    private func add(task: TaskViewModel) {
-        tasks.append(task)
-        task.objectWillChange
+    private func map(task: Task) -> TaskViewModel {
+        let tvm = TaskViewModel(task: task)
+        tvm.objectWillChange
             .sink { self.objectWillChange.send() }
             .store(in: &cancelables)
-
+        return tvm
     }
     
 }

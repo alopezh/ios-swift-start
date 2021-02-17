@@ -21,6 +21,10 @@ class DomainAssembly : Assembly {
             SessionUseCase()
         }.inObjectScope(.container)
         
+        container.register(TasksUseCase.self) { r in
+            TasksUseCaseImpl()
+        }.inObjectScope(.container)
+        
     }
     
 }

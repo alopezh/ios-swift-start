@@ -24,6 +24,6 @@ struct TaskDetailView: View {
 
 struct TaskDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        TaskDetailView(task: TaskViewModel(name: "Task 1", description: "Description"))
+        TaskDetailView(task: TaskViewModel())
     }
 }

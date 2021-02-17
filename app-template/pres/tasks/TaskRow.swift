@@ -26,8 +26,8 @@ struct TaskRow_Previews: PreviewProvider {
     
     static var previews: some View {
         Group {
-            TaskRow(task: TaskViewModel( name: "Task 1", description: "Description"))
-            TaskRow(task: TaskViewModel( name: "Task 2", description: "Description"))
+            TaskRow(task: TaskViewModel())
+            TaskRow(task: TaskViewModel())
         }.previewLayout(.fixed(width: 300, height: 70))
     }
 }

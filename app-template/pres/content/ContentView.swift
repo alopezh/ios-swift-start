@@ -21,6 +21,8 @@ struct ContentView: View {
                 HomeView()
             } else if viewRouter.currentPage == ViewRouter.Page.home.rawValue {
                 HomeView()
+            } else if viewRouter.currentPage == ViewRouter.Page.taskList.rawValue {
+                TaskListView()
             }
         }
     }

@@ -10,25 +10,32 @@ import Foundation
 
 class TaskViewModel: ObservableObject, Identifiable, Hashable {
     
-    var id: String { name }
-    
+    var id: String
     let name: String
     let description: String
     
     @Published var done: Bool = false
     
-    init(name: String, description: String, done: Bool = false) {
-        self.name = name
-        self.description = description
-        self.done = done
+    init() {
+        self.id = "0"
+        self.name = ""
+        self.description = ""
+        self.done = false
+    }
+    
+    init(task: Task) {
+        self.name = task.name
+        self.done = task.done
+        self.description = task.description
+        self.id = task.id
     }
     
     static func == (lhs: TaskViewModel, rhs: TaskViewModel) -> Bool {
-      lhs.id == rhs.id
+        lhs.id == rhs.id
     }
       
     func hash(into hasher: inout Hasher) {
-      hasher.combine(id)
+        hasher.combine(id)
     }
     
 }

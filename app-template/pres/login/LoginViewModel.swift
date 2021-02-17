@@ -48,9 +48,9 @@ class LoginViewModel : ObservableObject {
             })
         .subscribe(on: DispatchQueue.global())
         .receive(on: DispatchQueue.main)
-        .sink(receiveValue: {
+        .sink(receiveValue: { [weak self] in
             debugPrint("Succes: \($0)")
-            self.viewRouter.navigate(to: .home)
+            self?.viewRouter.navigate(to: .home)
         })
         .store(in: &cancelables)
     }
