@@ -10,20 +10,21 @@ import Foundation
 import Combine
 
 protocol TasksUseCase {
-    func getTasks() -> AnyPublisher<[Task],HttpError>
+    func getTasks() -> AnyPublisher<[Task],DomainError>
 }
 
 class TasksUseCaseImpl : TasksUseCase {
     
-    init() {
-        
+    private let taskApi: TaskApi
+    
+    init(taskApi: TaskApi) {
+        self.taskApi = taskApi
     }
     
-    func getTasks() -> AnyPublisher<[Task],HttpError> {
-        Just([Task(id: "1", name:  "Task 1", description: "Description", done: false),
-              Task(id: "2", name: "Task 2", description: "Description", done: false)])
-            .setFailureType(to: HttpError.self)
-            .eraseToAnyPublisher()
+    func getTasks() -> AnyPublisher<[Task],DomainError> {
+        taskApi.getTasks().mapError { error -> DomainError in
+            .network(error: error)
+        }.eraseToAnyPublisher()
     }
     
 }

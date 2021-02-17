@@ -22,7 +22,7 @@ class DomainAssembly : Assembly {
         }.inObjectScope(.container)
         
         container.register(TasksUseCase.self) { r in
-            TasksUseCaseImpl()
+            TasksUseCaseImpl(taskApi: r.resolve(TaskApi.self)!)
         }.inObjectScope(.container)
         
     }

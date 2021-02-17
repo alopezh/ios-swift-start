@@ -9,6 +9,7 @@
 import Foundation
 import Combine
 import InjectPropertyWrapper
+import SwiftUI
 
 class TaskListViewModel : ObservableObject  {
     
@@ -21,18 +22,28 @@ class TaskListViewModel : ObservableObject  {
 
     @Published var tasks: [TaskViewModel] = []
     
+    @Published var loading = false
+    
+    @Published private(set) var error: LocalizedError?
+    
     func filter() -> [TaskViewModel]  {
         filterDone ? tasks.filter { !$0.done } : tasks
     }
     
     func fetchTasks() {
+        loading = true
         tasksUseCase.getTasks()
-        .map { tasks in
-            tasks.map { self.map(task: $0) }
+        .subscribe(on: DispatchQueue.global(qos: .background))
+        .receive(on: DispatchQueue.main)
+        .map { [weak self] tasks in
+            guard let self = self else { return [] }
+            return tasks.map { self.map(task: $0) }
         }.catch { error -> AnyPublisher<[TaskViewModel], Never> in
-            debugPrint("Error \(error)")
+            self.error = error
             return Empty(completeImmediately: true).eraseToAnyPublisher()
-        }.assign(to: \.tasks, on: self)
+        }.handleEvents( receiveCompletion: { [weak self] _ in
+            self?.loading = false
+        }).assign(to: \.tasks, on: self)
         .store(in: &cancelables)
     }
     
@@ -42,6 +53,15 @@ class TaskListViewModel : ObservableObject  {
             .sink { self.objectWillChange.send() }
             .store(in: &cancelables)
         return tvm
+    }
+ 
+    var isPresentingAlert: Binding<Bool> {
+        return Binding<Bool>(get: {
+            return self.error != nil
+        }, set: { newValue in
+            guard !newValue else { return }
+            self.error = nil
+        })
     }
     
 }

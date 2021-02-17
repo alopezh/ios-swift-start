@@ -14,5 +14,9 @@ class DataAssembly : Assembly {
         container.register(UserApi.self) { _ in
             UserApiImpl(baseUrl: Config.endpoints.api)
         }
+        
+        container.register(TaskApi.self) { _ in
+            TaskApiImpl(baseUrl: Config.endpoints.api)
+        }
     }
 }

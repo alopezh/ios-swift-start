@@ -15,7 +15,11 @@ class HttpApiRequest<Element: Codable> {
     
     var errorHandler: ErrorHandler?
     
-    func get(path: String, headers: [String:String]? = nil) -> AnyPublisher<Element, HttpError> {
+    func get(id: String, path: String, headers: [String:String]? = nil) -> AnyPublisher<Element, HttpError> {
+        perfromRequest(method: "GET", path: path + "/" + id, body: nil, headers: headers)
+    }
+    
+    func get(path: String, headers: [String:String]? = nil) -> AnyPublisher<[Element], HttpError> {
         perfromRequest(method: "GET", path: path, body: nil, headers: headers)
     }
     
@@ -31,8 +35,8 @@ class HttpApiRequest<Element: Codable> {
         perfromRequest(method: "DELETE", path: path, body: body, headers: headers)
     }
     
-    private func perfromRequest(method: String, path: String, body: Element?, headers: [String:String]? = nil) -> AnyPublisher<Element, HttpError> {
-        Deferred<AnyPublisher<Element, HttpError>> { [weak self] in
+    private func perfromRequest<T: Codable>(method: String, path: String, body: T?, headers: [String:String]? = nil) -> AnyPublisher<T, HttpError> {
+        Deferred<AnyPublisher<T, HttpError>> { [weak self] in
             
             var request = URLRequest(url: URL(string: path)!)
             request.allHTTPHeaderFields = headers
@@ -55,7 +59,7 @@ class HttpApiRequest<Element: Codable> {
                 self?.applyResponseInterceptors(output.response, output.data)
                 return output.data
             }
-            .decode(type: Element.self, decoder: JSONDecoder())
+            .decode(type: T.self, decoder: JSONDecoder())
             .mapError { [weak self] error in
                 self?.errorHandler?.handle(error: error)
                 return HttpError(error: error)

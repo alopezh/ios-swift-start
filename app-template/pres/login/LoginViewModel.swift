@@ -46,7 +46,7 @@ class LoginViewModel : ObservableObject {
                 debugPrint("Error \(error)")
                 return Empty(completeImmediately: true).eraseToAnyPublisher()
             })
-        .subscribe(on: DispatchQueue.global())
+        .subscribe(on: DispatchQueue.global(qos: .background))
         .receive(on: DispatchQueue.main)
         .sink(receiveValue: { [weak self] in
             debugPrint("Succes: \($0)")

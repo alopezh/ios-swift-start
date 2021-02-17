@@ -13,23 +13,26 @@ struct TaskListView: View {
     @ObservedObject private var viewModel = TaskListViewModel()
 
     var body: some View {
-        
-        NavigationView {
-            VStack {
-                Toggle(isOn: $viewModel.filterDone) {
-                    Text("Filter done")
-                }.padding()
-                List {
-                    ForEach(viewModel.filter(), id: \.self) { task in
-                        NavigationLink(destination: TaskDetailView(task: task)) {
-                            TaskRow(task: task)
+        LoadingView(isShowing: $viewModel.loading) {
+            NavigationView {
+                VStack {
+                    Toggle(isOn: $viewModel.filterDone) {
+                        Text("Filter done")
+                    }.padding()
+                    List {
+                        ForEach(viewModel.filter(), id: \.self) { task in
+                            NavigationLink(destination: TaskDetailView(task: task)) {
+                                TaskRow(task: task)
+                            }
                         }
                     }
-                }
-            }.navigationBarTitle(Text("Tasks"))
+                }.navigationBarTitle(Text("Tasks"))
+            }
         }.onAppear {
             viewModel.fetchTasks()
-        }
+        }.alert(isPresented: viewModel.isPresentingAlert, content: {
+            Alert(localizedError: viewModel.error!)
+        })
     }
 }
 
