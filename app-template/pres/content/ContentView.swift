@@ -17,8 +17,7 @@ struct ContentView: View {
     var body: some View {
         VStack {
             if viewRouter.currentPage == ViewRouter.Page.login.rawValue {
-               // LoginView().transition(.offset(y: 500))
-                HomeView()
+                LoginView().transition(.offset(y: 500))
             } else if viewRouter.currentPage == ViewRouter.Page.home.rawValue {
                 HomeView()
             } else if viewRouter.currentPage == ViewRouter.Page.taskList.rawValue {
