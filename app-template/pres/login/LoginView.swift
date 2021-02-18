@@ -32,7 +32,7 @@ struct LoginView: View {
                 .textContentType(.password)
             
             Button(action: {
-                self.loginViewModel.submmit()
+                loginViewModel.submmit()
             }) {
                 Text("Log In")
             }

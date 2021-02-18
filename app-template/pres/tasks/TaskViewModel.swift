@@ -31,11 +31,11 @@ class TaskViewModel: ObservableObject, Identifiable, Hashable {
     }
     
     static func == (lhs: TaskViewModel, rhs: TaskViewModel) -> Bool {
-        lhs.id == rhs.id
+        lhs.id == rhs.id && lhs.done == rhs.done
     }
-      
     func hash(into hasher: inout Hasher) {
         hasher.combine(id)
+        hasher.combine(done)
     }
     
 }
