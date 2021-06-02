@@ -11,6 +11,7 @@ import Combine
 
 protocol TaskApi {
     func getTasks() -> AnyPublisher<[Task],HttpError>
+    func updateTask(id: String, _ task: Task) -> AnyPublisher<Task, HttpError>
 }
 
 class TaskApiImpl: HttpApiRequest<Task>, TaskApi {
@@ -19,6 +20,8 @@ class TaskApiImpl: HttpApiRequest<Task>, TaskApi {
         get(path: "/task")
     }
     
+    func updateTask(id: String, _ task: Task) -> AnyPublisher<Task, HttpError> {
+        put(path: "/task", id: id, body: task)
     }
     
 }
