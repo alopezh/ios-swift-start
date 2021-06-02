@@ -14,6 +14,7 @@
 		6D1845A325DC1D48002408A7 /* TaskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D1845A225DC1D48002408A7 /* TaskViewModel.swift */; };
 		6D1845B125DC315D002408A7 /* TasksUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D1845B025DC315D002408A7 /* TasksUseCase.swift */; };
 		6D1E3EAE2667E412002C6126 /* AlertViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D1E3EAD2667E412002C6126 /* AlertViewModel.swift */; };
+		6D1E3EB22667F750002C6126 /* SecondaryButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D1E3EB12667F750002C6126 /* SecondaryButtonStyle.swift */; };
 		6D8443FA252A099900F92BCA /* CheckBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D8443F9252A099900F92BCA /* CheckBoxView.swift */; };
 		6DD042522518FA4800799D58 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD042512518FA4800799D58 /* AppDelegate.swift */; };
 		6DD042542518FA4800799D58 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD042532518FA4800799D58 /* SceneDelegate.swift */; };
@@ -73,6 +74,7 @@
 		6D1845A225DC1D48002408A7 /* TaskViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskViewModel.swift; sourceTree = "<group>"; };
 		6D1845B025DC315D002408A7 /* TasksUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksUseCase.swift; sourceTree = "<group>"; };
 		6D1E3EAD2667E412002C6126 /* AlertViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewModel.swift; sourceTree = "<group>"; };
+		6D1E3EB12667F750002C6126 /* SecondaryButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondaryButtonStyle.swift; sourceTree = "<group>"; };
 		6D8443F9252A099900F92BCA /* CheckBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxView.swift; sourceTree = "<group>"; };
 		6DD0424E2518FA4700799D58 /* ios-swift-start.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ios-swift-start.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6DD042512518FA4800799D58 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -321,6 +323,7 @@
 			isa = PBXGroup;
 			children = (
 				6DD042C9252481A500799D58 /* PrimaryButtonStyle.swift */,
+				6D1E3EB12667F750002C6126 /* SecondaryButtonStyle.swift */,
 				6DD042CB2524882D00799D58 /* LoginFieldViewModifier.swift */,
 				6DD042CD25248D4100799D58 /* Color+Extension.swift */,
 			);
@@ -510,6 +513,7 @@
 				6DD042D72524E67F00799D58 /* Session.swift in Sources */,
 				6DD042DB2524E91600799D58 /* SessionUseCase.swift in Sources */,
 				6DD0428B251B66C200799D58 /* DataAssembly.swift in Sources */,
+				6D1E3EB22667F750002C6126 /* SecondaryButtonStyle.swift in Sources */,
 				6D8443FA252A099900F92BCA /* CheckBoxView.swift in Sources */,
 				6DD042C1251BC22400799D58 /* HttpApiRequest.swift in Sources */,
 				6DD042BB251BB71E00799D58 /* UserApi.swift in Sources */,
