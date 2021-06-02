@@ -15,18 +15,12 @@ protocol UserApi {
 
 class UserApiImpl: HttpApiRequest<User>, UserApi {
     
-    private let baseUrl: String
-    
-    init(baseUrl: String) {
-        self.baseUrl = baseUrl
-    }
-    
     func login(user: User) -> AnyPublisher<User, HttpError> {
-        post(path: baseUrl + "/user/login", body: user)
+        post(path: "/user/login", body: user)
     }
     
     func addUser(user: User) -> AnyPublisher<User, HttpError> {
-        post(path: baseUrl + "/user", body: user)
+        post(path:  "/user", body: user)
     }
     
     

@@ -15,14 +15,10 @@ protocol TaskApi {
 
 class TaskApiImpl: HttpApiRequest<Task>, TaskApi {
     
-    private let baseUrl: String
-    
-    init(baseUrl: String) {
-        self.baseUrl = baseUrl
+    func getTasks() -> AnyPublisher<[Task], HttpError> {
+        get(path: "/task")
     }
     
-    func getTasks() -> AnyPublisher<[Task], HttpError> {
-        get(path: baseUrl + "/task")
     }
     
 }

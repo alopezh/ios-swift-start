@@ -13,6 +13,12 @@ class HttpApiRequest<Element: Codable> {
     
     public private(set) var interceptors: [Interceptor] = []
     
+    private let baseUrl: String
+    
+    init(baseUrl: String) {
+        self.baseUrl = baseUrl
+    }
+    
     var errorHandler: ErrorHandler?
     
     func get(id: String, path: String, headers: [String:String]? = nil) -> AnyPublisher<Element, HttpError> {
@@ -27,8 +33,8 @@ class HttpApiRequest<Element: Codable> {
        perfromRequest(method: "POST", path: path, body: body, headers: headers)
     }
     
-    func put(path: String, body: Element, headers: [String:String]? = nil) -> AnyPublisher<Element, HttpError> {
-        perfromRequest(method: "PUT", path: path, body: body, headers: headers)
+    func put(path: String, id: String, body: Element, headers: [String:String]? = nil) -> AnyPublisher<Element, HttpError> {
+        perfromRequest(method: "PUT", path: path + "/" + id, body: body, headers: headers)
     }
     
     func delete(path: String, body: Element?, headers: [String:String]? = nil) -> AnyPublisher<Element, HttpError> {
@@ -38,11 +44,15 @@ class HttpApiRequest<Element: Codable> {
     private func perfromRequest<T: Codable>(method: String, path: String, body: T?, headers: [String:String]? = nil) -> AnyPublisher<T, HttpError> {
         Deferred<AnyPublisher<T, HttpError>> { [weak self] in
             
-            var request = URLRequest(url: URL(string: path)!)
+            let url = (self?.baseUrl ?? "") + path
+            
+            var request = URLRequest(url: URL(string: url)!)
             request.allHTTPHeaderFields = headers
             request.httpMethod = method
             
             self?.applyRequestInterceptors(request)
+
+            debugPrint("Performing request. Method: \(method), path: \(url), body: \(String(describing: body))")
             
             if let body = body {
                 do {
