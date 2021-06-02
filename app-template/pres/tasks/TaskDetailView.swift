@@ -13,13 +13,33 @@ struct TaskDetailView: View {
     @ObservedObject var task: TaskViewModel
     
     var body: some View {
-        VStack {
-            Text(task.name)
-            Text(task.description)
-            Toggle("", isOn: $task.done )
-        }
-        
+        LoadingView(isShowing: $task.loading) {
+            NavigationView {
+                VStack {
+                    Form {
+                        Section(header: Text("Task details")) {
+                            TextField("Name", text: $task.name)
+                            TextField("Description", text: $task.description)
+                            Toggle("Done", isOn: $task.done )
+                        }
+                    }
+                    HStack {
+                        Button(action: { task.reset() }) {
+                            Text("Reset")
+                        }.modifier(SecondaryButtonViewModifier())
+                        Spacer()
+                        Button(action: { task.save() }) {
+                            Text("Save")
+                        }.modifier(PrimaryButtonViewModifier())
+                    }
+                }
+            }
+            
+        }.alert(isPresented: task.isPresentingAlert, content: {
+            Alert(localizedError: task.error!)
+        })
     }
+    
 }
 
 struct TaskDetailView_Previews: PreviewProvider {

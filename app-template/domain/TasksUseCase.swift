@@ -11,6 +11,7 @@ import Combine
 
 protocol TasksUseCase {
     func getTasks() -> AnyPublisher<[Task],DomainError>
+    func update(task: Task) -> AnyPublisher<Task,DomainError>
 }
 
 class TasksUseCaseImpl : TasksUseCase {
@@ -22,7 +23,15 @@ class TasksUseCaseImpl : TasksUseCase {
     }
     
     func getTasks() -> AnyPublisher<[Task],DomainError> {
-        taskApi.getTasks().mapError { error -> DomainError in
+        taskApi.getTasks().map {
+            $0
+        }.mapError { error -> DomainError in
+            .network(error: error)
+        }.eraseToAnyPublisher()
+    }
+    
+    func update(task: Task) -> AnyPublisher<Task,DomainError> {
+        taskApi.updateTask(id: task.id, task).mapError { error -> DomainError in
             .network(error: error)
         }.eraseToAnyPublisher()
     }
