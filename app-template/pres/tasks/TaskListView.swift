@@ -27,7 +27,7 @@ struct TaskListView: View {
                         }
                     }
                 }.navigationBarTitle(Text("Tasks"))
-            }
+            }.navigationViewStyle(StackNavigationViewStyle())
         }.onAppear {
             viewModel.fetchTasks()
         }.alert(isPresented: viewModel.isPresentingAlert, content: {
