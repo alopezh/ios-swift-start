@@ -9,6 +9,8 @@
 import Foundation
 import SwiftUI
 
+//https://augmentedcode.io/2020/03/01/alert-and-localizederror-in-swiftui/
+
 extension Alert {
     
     init(localizedError: LocalizedError) {

@@ -9,9 +9,8 @@
 import Foundation
 import Combine
 import InjectPropertyWrapper
-import SwiftUI
 
-class TaskListViewModel : ObservableObject  {
+class TaskListViewModel : ObservableObject, AlertViewModel  {
     
     private var cancelables = Set<AnyCancellable>()
     
@@ -24,7 +23,7 @@ class TaskListViewModel : ObservableObject  {
     
     @Published var loading = false
     
-    @Published private(set) var error: LocalizedError?
+    var error: LocalizedError?
     
     func filter() -> [TaskViewModel]  {
         filterDone ? tasks.filter { !$0.done } : tasks
@@ -53,15 +52,6 @@ class TaskListViewModel : ObservableObject  {
             .sink { self.objectWillChange.send() }
             .store(in: &cancelables)
         return tvm
-    }
- 
-    var isPresentingAlert: Binding<Bool> {
-        return Binding<Bool>(get: {
-            return self.error != nil
-        }, set: { newValue in
-            guard !newValue else { return }
-            self.error = nil
-        })
     }
     
 }
