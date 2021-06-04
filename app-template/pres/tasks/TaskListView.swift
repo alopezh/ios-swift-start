@@ -26,6 +26,15 @@ struct TaskListView: View {
                             }
                         }
                     }
+                    HStack {
+                        Button(action: { viewModel.fetchTasks() }) {
+                            Text("Reset")
+                        }.modifier(SecondaryButtonViewModifier())
+                        Spacer()
+                        Button(action: { viewModel.save() }) {
+                            Text("Save")
+                        }.modifier(PrimaryButtonViewModifier())
+                    }
                 }.navigationBarTitle(Text("Tasks"))
                 .navigationBarItems(trailing: Button(action: { viewModel.newTask() }) {
                     Image(systemName: "plus").resizable().frame(width: 20.0, height: 20.0)

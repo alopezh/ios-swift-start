@@ -28,6 +28,7 @@ class TaskViewModel: ObservableObject, Identifiable, Hashable, AlertViewModel {
     @Published var done: Bool = false
     
     private var modified: Bool
+    private var new: Bool
     
     init() {
         self.id = UUID.init()
@@ -35,6 +36,7 @@ class TaskViewModel: ObservableObject, Identifiable, Hashable, AlertViewModel {
         self.description = ""
         self.done = false
         self.modified = false
+        self.new = true
     }
     
     init(task: TaskDM) {
@@ -43,6 +45,7 @@ class TaskViewModel: ObservableObject, Identifiable, Hashable, AlertViewModel {
         self.description = task.description
         self.id = task.id
         self.modified = task.modified
+        self.new = task.new
     }
     
     func save() {
@@ -80,8 +83,8 @@ class TaskViewModel: ObservableObject, Identifiable, Hashable, AlertViewModel {
         self.modified = task.modified
     }
     
-    private func toDomain() -> TaskDM {
-        TaskDM(id: id, name: name, description: description, done: done, modified: modified)
+    func toDomain() -> TaskDM {
+        TaskDM(id: id, name: name, description: description, done: done, modified: modified, new: new)
     }
     
 }

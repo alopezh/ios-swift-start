@@ -17,6 +17,7 @@ struct TaskDM {
     var done: Bool
     
     var modified: Bool
+    var new: Bool
     
 }
 
@@ -24,7 +25,7 @@ struct TaskDM {
 extension TaskDM {
     
     init(data: Task) {
-        self.init(id: data.id, name: data.name, description: data.description, done: data.done, modified: false)
+        self.init(id: data.id, name: data.name, description: data.description, done: data.done, modified: false, new: false)
     }
     
     func toData() -> Task {

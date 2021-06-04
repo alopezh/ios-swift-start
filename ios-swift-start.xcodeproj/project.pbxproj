@@ -16,6 +16,7 @@
 		6D1E3EAE2667E412002C6126 /* AlertViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D1E3EAD2667E412002C6126 /* AlertViewModel.swift */; };
 		6D1E3EB22667F750002C6126 /* SecondaryButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D1E3EB12667F750002C6126 /* SecondaryButtonStyle.swift */; };
 		6D8443FA252A099900F92BCA /* CheckBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D8443F9252A099900F92BCA /* CheckBoxView.swift */; };
+		6D8640BC266A659A00D1D66D /* Publisher+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D8640BB266A659A00D1D66D /* Publisher+Extension.swift */; };
 		6DD042522518FA4800799D58 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD042512518FA4800799D58 /* AppDelegate.swift */; };
 		6DD042542518FA4800799D58 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD042532518FA4800799D58 /* SceneDelegate.swift */; };
 		6DD042582518FA4A00799D58 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6DD042572518FA4A00799D58 /* Assets.xcassets */; };
@@ -77,6 +78,7 @@
 		6D1E3EAD2667E412002C6126 /* AlertViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewModel.swift; sourceTree = "<group>"; };
 		6D1E3EB12667F750002C6126 /* SecondaryButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondaryButtonStyle.swift; sourceTree = "<group>"; };
 		6D8443F9252A099900F92BCA /* CheckBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxView.swift; sourceTree = "<group>"; };
+		6D8640BB266A659A00D1D66D /* Publisher+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Publisher+Extension.swift"; sourceTree = "<group>"; };
 		6DD0424E2518FA4700799D58 /* ios-swift-start.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ios-swift-start.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6DD042512518FA4800799D58 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6DD042532518FA4800799D58 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -157,6 +159,14 @@
 			path = error;
 			sourceTree = "<group>";
 		};
+		6D8640BA266A657C00D1D66D /* extension */ = {
+			isa = PBXGroup;
+			children = (
+				6D8640BB266A659A00D1D66D /* Publisher+Extension.swift */,
+			);
+			path = extension;
+			sourceTree = "<group>";
+		};
 		6DD042452518FA4700799D58 = {
 			isa = PBXGroup;
 			children = (
@@ -179,6 +189,7 @@
 			isa = PBXGroup;
 			children = (
 				6DD04281251A4E9800799D58 /* Info.plist */,
+				6D8640BA266A657C00D1D66D /* extension */,
 				6DD042762518FAD500799D58 /* app */,
 				6DD042752518FACA00799D58 /* pres */,
 				6DD042742518FAC300799D58 /* domain */,
@@ -485,6 +496,7 @@
 				6D076F8F25DD8575001A8C44 /* Alert+Extension.swift in Sources */,
 				6DD042CA252481A500799D58 /* PrimaryButtonStyle.swift in Sources */,
 				6D1E3EAE2667E412002C6126 /* AlertViewModel.swift in Sources */,
+				6D8640BC266A659A00D1D66D /* Publisher+Extension.swift in Sources */,
 				6DD04288251B669800799D58 /* DomainAssembly.swift in Sources */,
 				6DD042C3251C981600799D58 /* Interceptor.swift in Sources */,
 				6DD042E0252632B800799D58 /* ViewRouter.swift in Sources */,

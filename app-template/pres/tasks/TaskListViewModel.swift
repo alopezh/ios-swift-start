@@ -42,12 +42,29 @@ class TaskListViewModel : ObservableObject, AlertViewModel  {
             return Empty(completeImmediately: true).eraseToAnyPublisher()
         }.handleEvents( receiveCompletion: { [weak self] _ in
             self?.loading = false
-        }).assign(to: \.tasks, on: self)
+        }).weakAssign(to: \.tasks, on: self)
         .store(in: &cancelables)
     }
     
     func newTask() {
         tasks.append(TaskViewModel())
+    }
+    
+    func save() {
+        loading = true
+        tasksUseCase.save(tasks: tasks.map { $0.toDomain() } )
+            .subscribe(on: DispatchQueue.global(qos: .background))
+            .receive(on: DispatchQueue.main)
+            .map { [weak self] tasks in
+                guard let self = self else { return [] }
+                return tasks.map { self.map(task: $0) }
+            }.catch { error -> AnyPublisher<[TaskViewModel], Never> in
+                self.error = error
+                return Empty(completeImmediately: true).eraseToAnyPublisher()
+            }.handleEvents( receiveCompletion: { [weak self] _ in
+                self?.loading = false
+            }).weakAssign(to: \.tasks, on: self)
+            .store(in: &cancelables)
     }
     
     private func map(task: TaskDM) -> TaskViewModel {
