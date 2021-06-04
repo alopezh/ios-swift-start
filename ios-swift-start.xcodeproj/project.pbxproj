@@ -15,8 +15,10 @@
 		6D1845B125DC315D002408A7 /* TasksUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D1845B025DC315D002408A7 /* TasksUseCase.swift */; };
 		6D1E3EAE2667E412002C6126 /* AlertViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D1E3EAD2667E412002C6126 /* AlertViewModel.swift */; };
 		6D1E3EB22667F750002C6126 /* SecondaryButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D1E3EB12667F750002C6126 /* SecondaryButtonStyle.swift */; };
+		6D398F69266A9969001991BF /* Mocker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D8640CB266A87E600D1D66D /* Mocker.swift */; };
 		6D8443FA252A099900F92BCA /* CheckBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D8443F9252A099900F92BCA /* CheckBoxView.swift */; };
 		6D8640BC266A659A00D1D66D /* Publisher+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D8640BB266A659A00D1D66D /* Publisher+Extension.swift */; };
+		6D8640C0266A84A100D1D66D /* TaskUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D8640BF266A84A100D1D66D /* TaskUseCaseTests.swift */; };
 		6DD042522518FA4800799D58 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD042512518FA4800799D58 /* AppDelegate.swift */; };
 		6DD042542518FA4800799D58 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD042532518FA4800799D58 /* SceneDelegate.swift */; };
 		6DD042582518FA4A00799D58 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6DD042572518FA4A00799D58 /* Assets.xcassets */; };
@@ -79,6 +81,8 @@
 		6D1E3EB12667F750002C6126 /* SecondaryButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondaryButtonStyle.swift; sourceTree = "<group>"; };
 		6D8443F9252A099900F92BCA /* CheckBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxView.swift; sourceTree = "<group>"; };
 		6D8640BB266A659A00D1D66D /* Publisher+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Publisher+Extension.swift"; sourceTree = "<group>"; };
+		6D8640BF266A84A100D1D66D /* TaskUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskUseCaseTests.swift; sourceTree = "<group>"; };
+		6D8640CB266A87E600D1D66D /* Mocker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mocker.swift; sourceTree = "<group>"; };
 		6DD0424E2518FA4700799D58 /* ios-swift-start.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ios-swift-start.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6DD042512518FA4800799D58 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6DD042532518FA4800799D58 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -167,12 +171,20 @@
 			path = extension;
 			sourceTree = "<group>";
 		};
+		6D8640C8266A866200D1D66D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		6DD042452518FA4700799D58 = {
 			isa = PBXGroup;
 			children = (
 				6DD042502518FA4700799D58 /* app-template */,
 				6DD042672518FA4A00799D58 /* app-template-tests */,
 				6DD0424F2518FA4700799D58 /* Products */,
+				6D8640C8266A866200D1D66D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -212,8 +224,10 @@
 		6DD042672518FA4A00799D58 /* app-template-tests */ = {
 			isa = PBXGroup;
 			children = (
-				6DD0428E251B684900799D58 /* ValidatePasswordUseCaseTest.swift */,
 				6DD0426A2518FA4A00799D58 /* Info.plist */,
+				6DD0428E251B684900799D58 /* ValidatePasswordUseCaseTest.swift */,
+				6D8640BF266A84A100D1D66D /* TaskUseCaseTests.swift */,
+				6D8640CB266A87E600D1D66D /* Mocker.swift */,
 			);
 			path = "app-template-tests";
 			sourceTree = "<group>";
@@ -421,6 +435,8 @@
 				6DD042662518FA4A00799D58 /* PBXTargetDependency */,
 			);
 			name = "ios-swift-startTests";
+			packageProductDependencies = (
+			);
 			productName = "ios-swift-startTests";
 			productReference = 6DD042642518FA4A00799D58 /* ios-swift-startTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -542,6 +558,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6D8640C0266A84A100D1D66D /* TaskUseCaseTests.swift in Sources */,
+				6D398F69266A9969001991BF /* Mocker.swift in Sources */,
 				6DD0428F251B684A00799D58 /* ValidatePasswordUseCaseTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
