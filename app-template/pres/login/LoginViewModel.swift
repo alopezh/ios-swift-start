@@ -30,13 +30,13 @@ class LoginViewModel : ObservableObject {
         $email.map { [weak self] email in
             guard let self = self else { return false }
             return self.isDataValid(email, self.password )
-        }.assign(to: \.loginEnabled, on: self)
+        }.weakAssign(to: \.loginEnabled, on: self)
         .store(in: &cancelables)
         
         $password.map { [weak self] password in
             guard let self = self else { return false }
             return self.isDataValid(self.email, password)
-        }.assign(to: \.loginEnabled, on: self)
+        }.weakAssign(to: \.loginEnabled, on: self)
         .store(in: &cancelables)
     }
     
