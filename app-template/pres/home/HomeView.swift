@@ -15,12 +15,12 @@ struct HomeView: View {
             TaskListView()
                 .tabItem {
                     Image(systemName: "1.circle")
-                    Text("First")
+                    Text("Task List")
                 }.tag(0)
             SettingsView()
                 .tabItem {
                     Image(systemName: "2.circle")
-                    Text("Second")
+                    Text("Settings")
                 }.tag(1)
         }
     }

@@ -10,7 +10,7 @@ import Foundation
 
 struct Task: Hashable, Codable, Identifiable {
     
-    var id: String
+    var id: UUID
     
     var name: String
     var description: String

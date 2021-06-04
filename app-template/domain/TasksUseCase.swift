@@ -10,8 +10,8 @@ import Foundation
 import Combine
 
 protocol TasksUseCase {
-    func getTasks() -> AnyPublisher<[Task],DomainError>
-    func update(task: Task) -> AnyPublisher<Task,DomainError>
+    func getTasks() -> AnyPublisher<[TaskDM],DomainError>
+    func update(task: TaskDM) -> AnyPublisher<TaskDM,DomainError>
 }
 
 class TasksUseCaseImpl : TasksUseCase {
@@ -22,18 +22,21 @@ class TasksUseCaseImpl : TasksUseCase {
         self.taskApi = taskApi
     }
     
-    func getTasks() -> AnyPublisher<[Task],DomainError> {
-        taskApi.getTasks().map {
-            $0
-        }.mapError { error -> DomainError in
-            .network(error: error)
-        }.eraseToAnyPublisher()
+    func getTasks() -> AnyPublisher<[TaskDM],DomainError> {
+        taskApi.getTasks()
+            .map { tasks in
+                tasks.map { TaskDM(data: $0) }
+            }.mapError { error -> DomainError in
+                .network(error: error)
+            }.eraseToAnyPublisher()
     }
     
-    func update(task: Task) -> AnyPublisher<Task,DomainError> {
-        taskApi.updateTask(id: task.id, task).mapError { error -> DomainError in
-            .network(error: error)
-        }.eraseToAnyPublisher()
+    func update(task: TaskDM) -> AnyPublisher<TaskDM,DomainError> {
+        taskApi.updateTask(id: task.id, task.toData())
+            .map { TaskDM(data: $0) }
+            .mapError { error -> DomainError in
+                .network(error: error)
+            }.eraseToAnyPublisher()
     }
     
 }

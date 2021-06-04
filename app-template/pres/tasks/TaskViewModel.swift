@@ -20,35 +20,39 @@ class TaskViewModel: ObservableObject, Identifiable, Hashable, AlertViewModel {
     @Published var loading = false
     var error: LocalizedError?
     
-    var id: String
+    var id: UUID
     
     @Published var name: String
     @Published var description: String
     
     @Published var done: Bool = false
     
+    private var modified: Bool
+    
     init() {
-        self.id = "0"
-        self.name = ""
+        self.id = UUID.init()
+        self.name = "New Task"
         self.description = ""
         self.done = false
+        self.modified = false
     }
     
-    init(task: Task) {
+    init(task: TaskDM) {
         self.name = task.name
         self.done = task.done
         self.description = task.description
         self.id = task.id
+        self.modified = task.modified
     }
     
     func save() {
         
         loading = true
         
-        tasksUseCase.update(task: mapToData())
+        tasksUseCase.update(task: toDomain())
         .subscribe(on: DispatchQueue.global(qos: .background))
         .receive(on: DispatchQueue.main)
-        .catch { error -> AnyPublisher<Task, Never> in
+        .catch { error -> AnyPublisher<TaskDM, Never> in
             self.error = error
             return Empty(completeImmediately: true).eraseToAnyPublisher()
         }.handleEvents( receiveCompletion: { [weak self] _ in
@@ -58,7 +62,7 @@ class TaskViewModel: ObservableObject, Identifiable, Hashable, AlertViewModel {
     }
     
     func reset() {
-        
+        // TODO: Call service to restore data
     }
     
     static func == (lhs: TaskViewModel, rhs: TaskViewModel) -> Bool {
@@ -68,14 +72,16 @@ class TaskViewModel: ObservableObject, Identifiable, Hashable, AlertViewModel {
         hasher.combine(id)
     }
     
-    private func load(task: Task) {
+    private func load(task: TaskDM) {
         self.name = task.name
         self.done = task.done
         self.description = task.description
+        self.done = task.done
+        self.modified = task.modified
     }
     
-    private func mapToData() -> Task {
-        Task(id: id, name: name, description: description, done: done)
+    private func toDomain() -> TaskDM {
+        TaskDM(id: id, name: name, description: description, done: done, modified: modified)
     }
     
 }

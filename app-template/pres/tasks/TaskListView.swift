@@ -22,11 +22,14 @@ struct TaskListView: View {
                     List {
                         ForEach(viewModel.filter(), id: \.self) { task in
                             NavigationLink(destination: TaskDetailView(task: task)) {
-                                TaskRow(task: task)
+                                TaskRowView(task: task)
                             }
                         }
                     }
                 }.navigationBarTitle(Text("Tasks"))
+                .navigationBarItems(trailing: Button(action: { viewModel.newTask() }) {
+                    Image(systemName: "plus").resizable().frame(width: 20.0, height: 20.0)
+                })
             }.navigationViewStyle(StackNavigationViewStyle())
         }.onAppear {
             viewModel.fetchTasks()

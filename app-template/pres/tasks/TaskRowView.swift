@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct TaskRow: View {
+struct TaskRowView: View {
     
     @ObservedObject var task: TaskViewModel
 
@@ -26,8 +26,8 @@ struct TaskRow_Previews: PreviewProvider {
     
     static var previews: some View {
         Group {
-            TaskRow(task: TaskViewModel())
-            TaskRow(task: TaskViewModel())
+            TaskRowView(task: TaskViewModel())
+            TaskRowView(task: TaskViewModel())
         }.previewLayout(.fixed(width: 300, height: 70))
     }
 }
