@@ -51,7 +51,7 @@ class TasksUseCaseImpl : TasksUseCase {
             updates + creates
         ).collect().eraseToAnyPublisher()
     }
-    
+        
     func create(task: TaskDM) -> AnyPublisher<TaskDM, DomainError> {
         taskApi.createTask(task.toData())
             .map { TaskDM(data: $0) }
