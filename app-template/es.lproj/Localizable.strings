@@ -1,0 +1,40 @@
+/* 
+  Localizable.strings
+  ios-swift-start
+
+  Created by Edwin Alberto Chuchón Alva on 18/6/21.
+  Copyright © 2021 com.herranz.all. All rights reserved.
+*/
+
+
+//TaskListView
+"Save"  =  "Guardar";
+"Reset" = "Resetear";
+"Tasks" = "Tarea";
+"Filter done" = "Filtro terminado";
+"implement task manager" = "Implementar administrador de tarea";
+
+
+//TaskDetailView
+"Task details" = "Detalles de la tarea";
+"Done"  = "Hecho";
+
+//SettingsView
+"Close Session" = "Cerrar Sesión";
+
+//HomeView
+"Task List" = "Lista de tarea";
+"Settings"  = "Ajustes";
+
+
+//LoginView
+"Log Into Your Account" = "Ingrese a su cuenta";
+"Log In" = "Iniciar sesión";
+
+//DomainError
+"Connection Error" = "Error en la conexión";
+"Error" = "Error";
+"Entered password was incorrect" = "La contraseña ingresada es incorrecta";
+"An error has occurred" = "Ha ocurrido un error";
+"Please check network settings" = "Compruebe la configuración de la red";
+"Please try again" = "Inténtelo de nuevo";

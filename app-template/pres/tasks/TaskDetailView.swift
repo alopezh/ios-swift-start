@@ -26,10 +26,12 @@ struct TaskDetailView: View {
                     HStack {
                         Button(action: { task.reset() }) {
                             Text("Reset")
+                            
                         }.modifier(SecondaryButtonViewModifier())
                         Spacer()
                         Button(action: { task.save() }) {
                             Text("Save")
+                           
                         }.modifier(PrimaryButtonViewModifier())
                     }
                 }
