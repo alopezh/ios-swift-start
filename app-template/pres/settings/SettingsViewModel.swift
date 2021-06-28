@@ -9,13 +9,11 @@
 import Foundation
 import InjectPropertyWrapper
 
-class SettingsViewModel : ObservableObject {
-    
+class SettingsViewModel: ObservableObject {
     @Inject
     private var sessionUseCase: SessionUseCase
-    
+
     func closeSession() {
         sessionUseCase.closeSession()
     }
-    
 }

@@ -10,7 +10,6 @@ import UIKit
 import SwiftUI
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
-
     var window: UIWindow?
 
 
@@ -23,9 +22,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let viewRouter = Injector.shared.resolve(ViewRouter.self)!
         let contentView = ContentView()
             .environmentObject(viewRouter)
-        
+
         viewRouter.navigate(to: .home)
-        
+
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
@@ -62,7 +61,4 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
     }
-
-
 }
-

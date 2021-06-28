@@ -9,11 +9,10 @@
 import Foundation
 
 enum DomainError: LocalizedError {
-
     case network(error: Error)
     case unexpected(error: Error)
-    
-    
+
+
     var errorDescription: String? {
         switch self {
         case .network:
@@ -22,7 +21,7 @@ enum DomainError: LocalizedError {
             return NSLocalizedString("Error", comment: "Localized kind: Error")
         }
     }
-     
+
     var failureReason: String? {
         switch self {
         case .network:
@@ -31,7 +30,7 @@ enum DomainError: LocalizedError {
             return NSLocalizedString("An error has occurred", comment: "Localized kind: An error has occurred")
         }
     }
-     
+
     var recoverySuggestion: String? {
         switch self {
         case .network:
@@ -40,6 +39,4 @@ enum DomainError: LocalizedError {
             return NSLocalizedString("Please try again", comment: "Localized kind: Please try again")
         }
     }
-    
-    
 }

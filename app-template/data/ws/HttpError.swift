@@ -15,7 +15,7 @@ enum HttpError: Error {
     case encodingError(error: Error)
     case decodingError(error: Error)
     case unknown(error: Error)
-    
+
     init(error: Error) {
         if error is DecodingError {
             self = .decodingError(error: error)

@@ -11,35 +11,34 @@ import SwiftUI
 import Combine
 import InjectPropertyWrapper
 
-class LoginViewModel : ObservableObject {
-    
+class LoginViewModel: ObservableObject {
     private var cancelables = Set<AnyCancellable>()
-    
+
     @Inject
     private var loginUseCase: LoginUseCase
-    
+
     @Inject
     private var viewRouter: ViewRouter
-    
+
     @Published var email = ""
     @Published var password = ""
-    
+
     @Published var loginEnabled = false
-    
+
     init() {
         $email.map { [weak self] email in
             guard let self = self else { return false }
             return self.isDataValid(email, self.password )
         }.weakAssign(to: \.loginEnabled, on: self)
         .store(in: &cancelables)
-        
+
         $password.map { [weak self] password in
             guard let self = self else { return false }
             return self.isDataValid(self.email, password)
         }.weakAssign(to: \.loginEnabled, on: self)
         .store(in: &cancelables)
     }
-    
+
     func submmit() {
         loginUseCase.login(user: User(email: email, password: password))
             .catch({ error -> AnyPublisher<User, Never> in
@@ -54,10 +53,8 @@ class LoginViewModel : ObservableObject {
         })
         .store(in: &cancelables)
     }
-    
+
     private func isDataValid(_ email: String, _ password: String) -> Bool {
         !email.isEmpty && !password.isEmpty
     }
-    
-    
 }

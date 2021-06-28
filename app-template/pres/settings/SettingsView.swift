@@ -9,12 +9,11 @@
 import SwiftUI
 
 struct SettingsView: View {
-    
     @ObservedObject private var settingsViewModel = SettingsViewModel()
-    
+
     var body: some View {
         VStack {
-            Button(action: {self.settingsViewModel.closeSession()}) {
+            Button(action: { self.settingsViewModel.closeSession() }) {
                 Text("Close Session")
             }.modifier(PrimaryButtonViewModifier())
         }.padding()

@@ -10,13 +10,9 @@ import Foundation
 import Swinject
 
 class PresAssembly: Assembly {
-    
     func assemble(container: Container) {
-        
         container.register(ViewRouter.self) { _ in
             ViewRouter()
         }.inObjectScope(.container)
-                
     }
-    
 }

@@ -10,13 +10,12 @@ import Foundation
 import InjectPropertyWrapper
 import Combine
 
-class ContentViewModel : ObservableObject {
-    
+class ContentViewModel: ObservableObject {
     private var cancelables = Set<AnyCancellable>()
-    
+
     @Inject
     private var sessionUseCase: SessionUseCase
-    
+
     @Inject
     private var viewRouter: ViewRouter
 
@@ -29,5 +28,4 @@ class ContentViewModel : ObservableObject {
             }
         }).store(in: &cancelables)
     }
-    
 }

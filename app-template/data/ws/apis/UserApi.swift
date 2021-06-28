@@ -10,19 +10,15 @@ import Foundation
 import Combine
 
 protocol UserApi {
-    func login(user: User) -> AnyPublisher<User,HttpError>
+    func login(user: User) -> AnyPublisher<User, HttpError>
 }
 
 class UserApiImpl: HttpApiRequest<User>, UserApi {
-    
     func login(user: User) -> AnyPublisher<User, HttpError> {
         post(path: "/user/login", body: user)
     }
-    
-    func addUser(user: User) -> AnyPublisher<User, HttpError> {
-        post(path:  "/user", body: user)
-    }
-    
-    
-}
 
+    func addUser(user: User) -> AnyPublisher<User, HttpError> {
+        post(path: "/user", body: user)
+    }
+}

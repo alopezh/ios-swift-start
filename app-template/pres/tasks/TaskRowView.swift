@@ -9,7 +9,6 @@
 import SwiftUI
 
 struct TaskRowView: View {
-    
     @ObservedObject var task: TaskViewModel
 
     var body: some View {
@@ -19,11 +18,9 @@ struct TaskRowView: View {
             Toggle("", isOn: $task.done )
         }
     }
-
 }
 
 struct TaskRow_Previews: PreviewProvider {
-    
     static var previews: some View {
         Group {
             TaskRowView(task: TaskViewModel())

@@ -12,11 +12,10 @@ import SwiftUI
 //https://augmentedcode.io/2020/03/01/alert-and-localizederror-in-swiftui/
 
 extension Alert {
-    
     init(localizedError: LocalizedError) {
         self = Alert(nsError: localizedError as NSError)
     }
-     
+
     init(nsError: NSError) {
         let message: Text? = {
             let message = [nsError.localizedFailureReason, nsError.localizedRecoverySuggestion].compactMap({ $0 }).joined(separator: "\n\n")

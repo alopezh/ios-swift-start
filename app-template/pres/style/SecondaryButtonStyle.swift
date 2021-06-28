@@ -11,15 +11,13 @@ import Foundation
 import SwiftUI
 
 struct SecondaryButtonStyle: ButtonStyle {
-    
     private let isEnabled: Bool
-    
+
     init(isEnabled: Bool = true) {
         self.isEnabled = isEnabled
     }
- 
+
     func makeBody(configuration: Self.Configuration) -> some View {
-    
         return configuration.label
             .frame(minWidth: 0, maxWidth: .infinity)
             .padding(10)
@@ -32,7 +30,7 @@ struct SecondaryButtonStyle: ButtonStyle {
 
 struct SecondaryButtonViewModifier: ViewModifier {
     @Environment(\.isEnabled) var isEnabled
-    
+
     func body(content: Content) -> some View {
         return content.buttonStyle(SecondaryButtonStyle(isEnabled: isEnabled))
     }

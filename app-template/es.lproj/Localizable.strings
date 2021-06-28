@@ -16,7 +16,7 @@
 
 
 //TaskDetailView
-"Task details" = "Detalles de la tarea";
+"task-details" = "Detalles de la tarea";
 "Done"  = "Hecho";
 
 //SettingsView
