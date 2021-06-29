@@ -21,13 +21,13 @@ class ContentViewModel : ObservableObject {
     private var viewRouter: ViewRouter
 
     init() {
-        sessionUseCase.sessionSubject.sink(receiveValue: { [weak self] session in
+        sessionUseCase.sessionSubject.sink { [weak self] session in
             if session?.isLogged() ?? false {
                 self?.viewRouter.navigate(to: .home)
             } else {
                 self?.viewRouter.navigate(to: .login)
             }
-        }).store(in: &cancelables)
+        }.store(in: &cancelables)
     }
     
 }
