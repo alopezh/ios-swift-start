@@ -12,11 +12,11 @@ import Swinject
 class DataAssembly: Assembly {
     func assemble(container: Container) {
         container.register(UserApi.self) { _ in
-            UserApiImpl(baseUrl: Config.endpoints.api)
+            UserApiImpl(baseUrl: Config.value(key: .apiUrl))
         }
 
         container.register(TaskApi.self) { _ in
-            TaskApiImpl(baseUrl: Config.endpoints.api)
+            TaskApiImpl(baseUrl: Config.value(key: .apiUrl))
         }
     }
 }

@@ -8,17 +8,26 @@
 
 import Foundation
 
-enum Endpoits {
-    case pre
-    case pro
-    var api: String {
-        switch self {
-        case .pre: return "https://virtserver.swaggerhub.com/alopezh/api-start/1.0.0"
-        case .pro: return "https://virtserver.swaggerhub.com/alopezh/api-start/1.0.0"
-        }
-    }
+public enum ConfigKey: String {
+
+    case apiUrl
+
 }
 
 struct Config {
-    static let endpoints: Endpoits = .pre
+
+    static fileprivate var infoDict: [String: Any]  {
+        get {
+            if let dict = Bundle.main.infoDictionary {
+                return dict
+            } else {
+                fatalError("Config file not found")
+            }
+        }
+    }
+    
+    static public func value(key: ConfigKey) -> String {
+        return infoDict[key.rawValue] as! String
+    }
+    
 }

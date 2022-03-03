@@ -1,0 +1,13 @@
+//
+//  pro.xcconfig
+//  ios-swift-start
+//
+//  Created by alopezh on 27/1/22.
+//  Copyright © 2022 com.herranz.all. All rights reserved.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+protocol = https:/
+apiUrl = $(protocol)/virtserver.swaggerhub.com/alopezh/api-start/1.0.0
