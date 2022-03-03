@@ -17,7 +17,7 @@ extension Interceptor {
     func intercept(request: URLRequest) {
         // no-op
     }
-    
+
     func intercept(response: URLResponse, data: Data) {
         // no-op
     }

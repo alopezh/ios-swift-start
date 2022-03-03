@@ -9,9 +9,8 @@
 import SwiftUI
 
 struct CheckBoxView: View {
-    
     @Binding var checked: Bool
-    
+
     var body: some View {
         Button(action: {}) {
             RoundedRectangle(cornerRadius: 10)

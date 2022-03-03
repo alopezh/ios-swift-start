@@ -9,7 +9,6 @@
 import SwiftUI
 
 struct TaskListView: View {
-    
     @ObservedObject private var viewModel = TaskListViewModel()
 
     var body: some View {
@@ -28,9 +27,7 @@ struct TaskListView: View {
                     }
                     HStack {
                         Button(action: { viewModel.fetchTasks() }) {
-                            
                             Text("Reset")
-                            
                         }.modifier(SecondaryButtonViewModifier())
                         Spacer()
                         Button(action: { viewModel.save() }) {
@@ -38,7 +35,6 @@ struct TaskListView: View {
                         }.modifier(PrimaryButtonViewModifier())
                     }
                 }.navigationBarTitle(
-                    
                     Text("Tasks")
                 )
                 .navigationBarItems(trailing: Button(action: { viewModel.newTask() }) {

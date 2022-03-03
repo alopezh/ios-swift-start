@@ -9,8 +9,7 @@
 import SwiftUI
 
 struct HomeView: View {
-    
-    var body: some View { 
+    var body: some View {
         TabView {
             TaskListView()
                 .tabItem {

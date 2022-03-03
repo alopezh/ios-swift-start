@@ -10,48 +10,47 @@ import Foundation
 import XCTest
 
 class Mocker {
-    
     private var mockedFuncs: [String: MockedFuncCall] = [:]
-    
+
     private var name: String
-    
+
     init(_ name: String) {
         self.name = name
     }
-    
+
     func registerMock(_ fn: String, responses: [Any?]? = nil) {
         mockedFuncs[fn] = MockedFuncCall(name: fn, responses: responses)
     }
-    
+
     func verify(_ fn: String, called: VerifyCount = .atLeastOnce) -> MockedFuncCall? {
         if let mockedFunc = mockedFuncs[fn] {
             mockedFunc.verify(called: called)
             return mockedFunc
         }
-        
+
         if case .never = called {
             return nil
         }
-        
+
         XCTFail("Method \(fn) not called")
         return nil
     }
-    
-    func paramCaptured(_ fn: String, position: Int = 0) -> [String:Any?]? {
+
+    func paramCaptured(_ fn: String, position: Int = 0) -> [String: Any?]? {
         if let mock = mockedFuncs[fn] {
             return mock.getCapturedParams(position: position)
         }
         return nil
     }
 
-    func call(_ fn: String, params: [String:Any?]? = nil) -> Any? {
+    func call(_ fn: String, params: [String: Any?]? = nil) -> Any? {
         if let mockedFunc = mockedFuncs[fn] {
             return mockedFunc.call(params: params)
         }
         registerMock(fn)
         return call(fn, params: params)
     }
-    
+
     func verifyNoMoreInteractions() {
         mockedFuncs.values.forEach { $0.verifyNoMoreInteractions(className: name) }
     }
@@ -71,77 +70,76 @@ enum When {
 }
 
 class MockedFuncCall {
-    
     private var name: String
-    private var count: Int = 0
+    private var callCount: Int = 0
     private var responses: [Any?]?
-    private var paramList: [[String:Any?]?] = []
+    private var paramList: [[String: Any?]?] = []
     private var verifiedCount = 0
     private var timeStamps: [Date] = []
-    
+
     init(name: String, responses: [Any?]?) {
         self.name = name
         self.responses = responses
     }
-    
+
     private func getCurrentResponse() -> Any? {
-        if let responses = responses, count >= responses.count {
+        if let responses = responses, callCount >= responses.count {
             return responses[responses.count - 1]
         }
-        return responses?[count] ?? nil
+        return responses?[callCount]
     }
-    
-    func call(params: [String:Any?]?) -> Any? {
+
+    func call(params: [String: Any?]?) -> Any? {
         let response = getCurrentResponse()
         paramList.append(params)
         timeStamps.append(Date())
-        count += 1
+        callCount += 1
         return response
     }
-    
-    func getCapturedParams(position: Int) -> [String:Any?]? {
+
+    func getCapturedParams(position: Int) -> [String: Any?]? {
         if position > paramList.count {
             return nil
         }
         return paramList[position]
     }
-    
+
     func verify(called: VerifyCount = .atLeastOnce) {
         switch called {
         case .atLeastOnce:
             verifiedCount += 1
-            if count < 1 {
-                XCTFail("Func \(name) not called at least once: \( count)")
+            if callCount < 1 {
+                XCTFail("Func \(name) not called at least once: \( callCount)")
             }
         case .moreThan(let times):
             verifiedCount += times
-            if count <= times {
-                XCTFail("Func \(name) not called more than \(times) times: \( count) ")
+            if callCount <= times {
+                XCTFail("Func \(name) not called more than \(times) times: \( callCount) ")
             }
         case .lessThan(let times):
             verifiedCount += times
-            if count >= times {
-                XCTFail("Func \(name) not called less than \(times) times: \( count)")
+            if callCount >= times {
+                XCTFail("Func \(name) not called less than \(times) times: \( callCount)")
             }
         case .exact(let times):
             verifiedCount += times
-            if count != times {
-                XCTFail("Func \(name) not called \(times) times: \( count)")
+            if callCount != times {
+                XCTFail("Func \(name) not called \(times) times: \( callCount)")
             }
         case .never:
-            if count > 0 {
-                XCTFail("Func \(name) is called and it souldn't: \( count)")
+            if callCount > 0 {
+                XCTFail("Func \(name) is called and it souldn't: \( callCount)")
             }
         }
     }
-    
+
     func verifyNoMoreInteractions(className: String?) {
         let className = className ?? ""
-        if count > verifiedCount {
-            XCTFail("Func \(className).\(name) received more interactions: \(count) than verified \(verifiedCount)")
+        if callCount > verifiedCount {
+            XCTFail("Func \(className).\(name) received more interactions: \(callCount) than verified \(verifiedCount)")
         }
     }
-    
+
     func verify(called: When = .before, _ funcCall: MockedFuncCall?, time: Int = 0) {
         if let funcCall = funcCall {
             switch called {
@@ -158,5 +156,4 @@ class MockedFuncCall {
             XCTFail("Second func never called")
         }
     }
-    
 }

@@ -11,25 +11,24 @@ import InjectPropertyWrapper
 import Combine
 
 class TaskViewModel: ObservableObject, Identifiable, Hashable, AlertViewModel {
-    
     private var cancelables = Set<AnyCancellable>()
-    
+
     @Inject
     private var tasksUseCase: TasksUseCase
-    
+
     @Published var loading = false
     var error: LocalizedError?
-    
+
     var id: UUID
-    
+
     @Published var name: String
     @Published var description: String
-    
-    @Published var done: Bool = false
-    
+
+    @Published var done = false
+
     private var modified: Bool
     private var new: Bool
-    
+
     init() {
         self.id = UUID.init()
         self.name = "New Task"
@@ -38,7 +37,7 @@ class TaskViewModel: ObservableObject, Identifiable, Hashable, AlertViewModel {
         self.modified = false
         self.new = true
     }
-    
+
     init(task: TaskDM) {
         self.name = task.name
         self.done = task.done
@@ -47,11 +46,10 @@ class TaskViewModel: ObservableObject, Identifiable, Hashable, AlertViewModel {
         self.modified = task.modified
         self.new = task.new
     }
-    
+
     func save() {
-        
         loading = true
-        
+
         tasksUseCase.update(task: toDomain())
         .subscribe(on: DispatchQueue.global(qos: .background))
         .receive(on: DispatchQueue.main)
@@ -63,18 +61,18 @@ class TaskViewModel: ObservableObject, Identifiable, Hashable, AlertViewModel {
         }).sink { [weak self] in self?.load(task: $0) }
         .store(in: &cancelables)
     }
-    
+
     func reset() {
         // TODO: Call service to restore data
     }
-    
+
     static func == (lhs: TaskViewModel, rhs: TaskViewModel) -> Bool {
         lhs.id == rhs.id && lhs.done == rhs.done
     }
     func hash(into hasher: inout Hasher) {
         hasher.combine(id)
     }
-    
+
     private func load(task: TaskDM) {
         self.name = task.name
         self.done = task.done
@@ -82,9 +80,8 @@ class TaskViewModel: ObservableObject, Identifiable, Hashable, AlertViewModel {
         self.done = task.done
         self.modified = task.modified
     }
-    
+
     func toDomain() -> TaskDM {
         TaskDM(id: id, name: name, description: description, done: done, modified: modified, new: new)
     }
-    
 }

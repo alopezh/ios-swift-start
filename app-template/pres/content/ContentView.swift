@@ -9,11 +9,10 @@
 import SwiftUI
 
 struct ContentView: View {
-    
     @EnvironmentObject private var viewRouter: ViewRouter
-    
+
     @ObservedObject private var contentViewModel = ContentViewModel()
-    
+
     var body: some View {
         VStack {
             if viewRouter.currentPage == ViewRouter.Page.login.rawValue {

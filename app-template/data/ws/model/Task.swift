@@ -9,11 +9,9 @@
 import Foundation
 
 struct Task: Hashable, Codable, Identifiable {
-    
     var id: UUID
-    
+
     var name: String
     var description: String
     var done: Bool
-    
 }

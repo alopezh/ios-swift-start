@@ -9,23 +9,19 @@
 import Foundation
 import Swinject
 
-class DomainAssembly : Assembly {
+class DomainAssembly: Assembly {
     func assemble(container: Container) {
-        
-        container.register(LoginUseCase.self) { r in
-            LoginUseCaseImpl(userApi: r.resolve(UserApi.self)!,
-                             sessionUseCase: r.resolve(SessionUseCase.self)!)
+        container.register(LoginUseCase.self) { res in
+            LoginUseCaseImpl(userApi: res.resolve(UserApi.self)!,
+                             sessionUseCase: res.resolve(SessionUseCase.self)!)
         }.inObjectScope(.container)
-        
-        container.register(SessionUseCase.self) { r in
+
+        container.register(SessionUseCase.self) { _ in
             SessionUseCase()
         }.inObjectScope(.container)
-        
-        container.register(TasksUseCase.self) { r in
-            TasksUseCaseImpl(taskApi: r.resolve(TaskApi.self)!)
-        }.inObjectScope(.container)
-        
-    }
-    
-}
 
+        container.register(TasksUseCase.self) { res in
+            TasksUseCaseImpl(taskApi: res.resolve(TaskApi.self)!)
+        }.inObjectScope(.container)
+    }
+}

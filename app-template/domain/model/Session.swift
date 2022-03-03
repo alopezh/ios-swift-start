@@ -10,7 +10,7 @@ import Foundation
 
 struct Session {
     let token: String?
-    
+
     func isLogged() -> Bool {
         token != nil
     }

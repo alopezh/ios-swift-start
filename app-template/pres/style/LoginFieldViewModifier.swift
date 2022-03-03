@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct LoginFieldViewModifier : ViewModifier {
+struct LoginFieldViewModifier: ViewModifier {
     func body(content: Content) -> some View {
         content
             .padding()
@@ -16,12 +16,9 @@ struct LoginFieldViewModifier : ViewModifier {
             .background(Color.backgroundGrey)
             .cornerRadius(5)
     }
-    
 }
 
 struct LoginFieldViewModifier_Previews: PreviewProvider {
-    
-    
     static var previews: some View {
         Text("Field").modifier(LoginFieldViewModifier())
     }

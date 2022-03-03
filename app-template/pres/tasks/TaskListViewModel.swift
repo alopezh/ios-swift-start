@@ -10,25 +10,24 @@ import Foundation
 import Combine
 import InjectPropertyWrapper
 
-class TaskListViewModel : ObservableObject, AlertViewModel  {
-    
+class TaskListViewModel: ObservableObject, AlertViewModel {
     private var cancelables = Set<AnyCancellable>()
-    
+
     @Inject
     private var tasksUseCase: TasksUseCase
-    
+
     @Published var filterDone = false
 
     @Published var tasks: [TaskViewModel] = []
-    
+
     @Published var loading = false
-    
+
     var error: LocalizedError?
-    
-    func filter() -> [TaskViewModel]  {
+
+    func filter() -> [TaskViewModel] {
         filterDone ? tasks.filter { !$0.done } : tasks
     }
-    
+
     func fetchTasks() {
         loading = true
         tasksUseCase.getTasks()
@@ -45,14 +44,14 @@ class TaskListViewModel : ObservableObject, AlertViewModel  {
         }).weakAssign(to: \.tasks, on: self)
         .store(in: &cancelables)
     }
-    
+
     func newTask() {
         tasks.append(TaskViewModel())
     }
-    
+
     func save() {
         loading = true
-        tasksUseCase.save(tasks: tasks.map { $0.toDomain() } )
+        tasksUseCase.save(tasks: tasks.map { $0.toDomain() })
             .subscribe(on: DispatchQueue.global(qos: .background))
             .receive(on: DispatchQueue.main)
             .map { [weak self] tasks in
@@ -66,7 +65,7 @@ class TaskListViewModel : ObservableObject, AlertViewModel  {
             }).weakAssign(to: \.tasks, on: self)
             .store(in: &cancelables)
     }
-    
+
     private func map(task: TaskDM) -> TaskViewModel {
         let tvm = TaskViewModel(task: task)
         tvm.objectWillChange
@@ -74,5 +73,4 @@ class TaskListViewModel : ObservableObject, AlertViewModel  {
             .store(in: &cancelables)
         return tvm
     }
-    
 }

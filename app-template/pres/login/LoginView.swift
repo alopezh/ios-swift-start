@@ -9,28 +9,26 @@
 import SwiftUI
 
 struct LoginView: View {
-    
     @ObservedObject private var loginViewModel = LoginViewModel()
-    
+
     @EnvironmentObject private var viewRouter: ViewRouter
-    
+
     var body: some View {
-        VStack() {
-            
+        VStack {
             Text("iOS App Template")
             Text("Log Into Your Account")
                 .font(.title)
                 .padding(.bottom, 30)
-        
-            
+
+
             TextField("Email", text: $loginViewModel.email)
                 .modifier(LoginFieldViewModifier())
                 .textContentType(.emailAddress)
-                
+
             SecureField("Password", text: $loginViewModel.password)
                 .modifier(LoginFieldViewModifier())
                 .textContentType(.password)
-            
+
             Button(action: {
                 loginViewModel.submmit()
             }) {
@@ -38,9 +36,7 @@ struct LoginView: View {
             }
             .modifier(PrimaryButtonViewModifier())
             .disabled(!loginViewModel.loginEnabled)
-            
         }.padding()
-        
     }
 }
 

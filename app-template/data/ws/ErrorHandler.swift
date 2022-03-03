@@ -9,5 +9,5 @@
 import Foundation
 
 protocol ErrorHandler {
-    func handle(error: Error) 
+    func handle(error: Error)
 }
