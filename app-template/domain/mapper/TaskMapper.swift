@@ -7,3 +7,15 @@
 //
 
 import Foundation
+
+class TaskMapper {
+    
+    static func from(data: Task) -> TaskDM {
+        TaskDM(id: data.id, name: data.name, description: data.description, done: data.done, modified: false, new: false)
+    }
+    
+    static func toData(_ domain: TaskDM) -> Task {
+        Task(id: domain.id, name: domain.name, description: domain.description, done: domain.done)
+    }
+
+}

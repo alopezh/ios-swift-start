@@ -25,15 +25,15 @@ class TasksUseCaseImpl: TasksUseCase {
     func getTasks() -> AnyPublisher<[TaskDM], DomainError> {
         taskApi.getTasks()
             .map { tasks in
-                tasks.map { TaskDM(data: $0) }
+                tasks.map { TaskMapper.from(data: $0) }
             }.mapError { error -> DomainError in
                 .network(error: error)
             }.eraseToAnyPublisher()
     }
 
     func update(task: TaskDM) -> AnyPublisher<TaskDM, DomainError> {
-        taskApi.updateTask(id: task.id, task.toData())
-            .map { TaskDM(data: $0) }
+        taskApi.updateTask(id: task.id, TaskMapper.toData(task))
+            .map { TaskMapper.from(data: $0) }
             .mapError { error -> DomainError in
                 .network(error: error)
             }.eraseToAnyPublisher()
@@ -52,8 +52,8 @@ class TasksUseCaseImpl: TasksUseCase {
     }
 
     func create(task: TaskDM) -> AnyPublisher<TaskDM, DomainError> {
-        taskApi.createTask(task.toData())
-            .map { TaskDM(data: $0) }
+        taskApi.createTask(TaskMapper.toData(task))
+            .map { TaskMapper.from(data: $0) }
             .mapError { error -> DomainError in
             .network(error: error)
             }.eraseToAnyPublisher()
