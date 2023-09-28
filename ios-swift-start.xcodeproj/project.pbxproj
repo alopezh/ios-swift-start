@@ -1094,16 +1094,16 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Swinject/Swinject";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.8.1;
+				kind = exactVersion;
+				version = 2.8.3;
 			};
 		};
 		6DD042E32527664D00799D58 /* XCRemoteSwiftPackageReference "InjectPropertyWrapper" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/egeniq/InjectPropertyWrapper";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.3.0;
+				kind = exactVersion;
+				version = 0.3.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
