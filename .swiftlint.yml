@@ -9,6 +9,10 @@ disabled_rules:
   - orphaned_doc_comment
   - todo
   - unused_capture_list
+  - multiline_function_chains
+  - indentation_width
+  - trailing_whitespace 
+  - vertical_whitespace_opening_braces
 
 opt_in_rules:
   - array_init
@@ -32,7 +36,6 @@ opt_in_rules:
   - legacy_random
   - literal_expression_end_indentation
   - multiline_arguments
-  - multiline_function_chains
   - multiline_literal_brackets
   - multiline_parameters
   - multiline_parameters_brackets
@@ -82,11 +85,14 @@ identifier_name:
     - x
     - y
     - z
+    - to
 
 indentation_width:
   indentation_width: 2
 
 line_length:
+  warning: 200
+  error: 250
   ignores_urls: true
   ignores_function_declarations: true
   ignores_comments: true
