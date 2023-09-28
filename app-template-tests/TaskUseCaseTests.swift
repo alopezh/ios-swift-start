@@ -12,14 +12,14 @@ import Combine
 @testable import ios_swift_start
 
 class TaskUseCaseTests: XCTestCase {
-    private var cancelables: Set<AnyCancellable>!
+	private var cancelables: Set<AnyCancellable>!
 
-    private var sut: TasksUseCaseImpl!
+	private var sut: TasksUseCaseImpl!
+	
+	private var taskApiMock: TaskApiMock!
 
-    private var taskApiMock: TaskApiMock!
-
-    override func setUpWithError() throws {
-        cancelables = []
+	override func setUpWithError() throws {
+		cancelables = []
         taskApiMock = TaskApiMock()
         sut = TasksUseCaseImpl(taskApi: taskApiMock)
     }
@@ -29,8 +29,8 @@ class TaskUseCaseTests: XCTestCase {
     }
 
     func testGivenNewElementsThenSaveAllOfThem() throws {
-        let tasks = [ TaskDM(id: UUID(), name: "Name1", description: "Desc", done: false, modified: false, new: true),
-                      TaskDM(id: UUID(), name: "Name2", description: "Desc", done: false, modified: false, new: true) ]
+		let tasks = [ TaskDM(id: UUID(), name: "Name1", description: "Desc", done: false, modified: false, new: true),
+					  TaskDM(id: UUID(), name: "Name2", description: "Desc", done: false, modified: false, new: true) ]
 
         taskApiMock.registerCreateTask([Task(id: UUID(), name: "Name1", description: "Desc", done: false), Task(id: UUID(), name: "Name2", description: "Desc", done: false)])
 

@@ -10,6 +10,7 @@ import Foundation
 import InjectPropertyWrapper
 
 class SettingsViewModel: ObservableObject {
+	
     @Inject
     private var sessionUseCase: SessionUseCase
 

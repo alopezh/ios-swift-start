@@ -10,7 +10,7 @@ import Foundation
 import Combine
 
 protocol LoginUseCase {
-    func login(user: User) -> AnyPublisher<User, HttpError>
+    func login(user: User) -> AnyPublisher<User, Error>
 }
 
 class LoginUseCaseImpl: LoginUseCase {
@@ -34,7 +34,7 @@ class LoginUseCaseImpl: LoginUseCase {
     //           closure -> sesionUseCase
     // No cycles!
 
-    func login(user: User) -> AnyPublisher<User, HttpError> {
+    func login(user: User) -> AnyPublisher<User, Error> {
         userApi.login(user: user).map { [sessionUseCase] user in
             sessionUseCase.createSession(token: "Token")
             return user
