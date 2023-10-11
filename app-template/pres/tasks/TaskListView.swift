@@ -43,9 +43,12 @@ struct TaskListView: View {
             }.navigationViewStyle(StackNavigationViewStyle())
         }.onAppear {
             viewModel.fetchTasks()
-        }.alert(isPresented: viewModel.isPresentingAlert, content: {
-            Alert(localizedError: viewModel.error!)
-        })
+        }.alertError(
+			isPresented: viewModel.isPresentingAlert,
+			error: viewModel.error,
+			defaultMessage: "Error loading Initial Status"
+		)
+		
     }
 }
 

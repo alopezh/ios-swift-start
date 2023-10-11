@@ -31,6 +31,7 @@
 		6DA36E032AD5A4920079F75D /* ModelMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DA36E022AD5A4920079F75D /* ModelMapper.swift */; };
 		6DA36E052AD68D8F0079F75D /* UserServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DA36E042AD68D8F0079F75D /* UserServiceImpl.swift */; };
 		6DA36E072AD68E2B0079F75D /* UserMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DA36E062AD68E2B0079F75D /* UserMapper.swift */; };
+		6DA36E092AD6F7640079F75D /* AlertErrorViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DA36E082AD6F7640079F75D /* AlertErrorViewModifier.swift */; };
 		6DD042522518FA4800799D58 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD042512518FA4800799D58 /* AppDelegate.swift */; };
 		6DD042542518FA4800799D58 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD042532518FA4800799D58 /* SceneDelegate.swift */; };
 		6DD042582518FA4A00799D58 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6DD042572518FA4A00799D58 /* Assets.xcassets */; };
@@ -109,6 +110,7 @@
 		6DA36E022AD5A4920079F75D /* ModelMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelMapper.swift; sourceTree = "<group>"; };
 		6DA36E042AD68D8F0079F75D /* UserServiceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserServiceImpl.swift; sourceTree = "<group>"; };
 		6DA36E062AD68E2B0079F75D /* UserMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserMapper.swift; sourceTree = "<group>"; };
+		6DA36E082AD6F7640079F75D /* AlertErrorViewModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertErrorViewModifier.swift; sourceTree = "<group>"; };
 		6DD0424E2518FA4700799D58 /* ios-swift-start.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ios-swift-start.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6DD042512518FA4800799D58 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6DD042532518FA4800799D58 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -363,6 +365,7 @@
 		6DD04289251B66A200799D58 /* component */ = {
 			isa = PBXGroup;
 			children = (
+				6DA36E082AD6F7640079F75D /* AlertErrorViewModifier.swift */,
 				6D8443F9252A099900F92BCA /* CheckBoxView.swift */,
 				6D076F6925DD22C3001A8C44 /* LoadingView.swift */,
 			);
@@ -655,6 +658,7 @@
 				6DD042D12524E61D00799D58 /* HomeView.swift in Sources */,
 				6DD042BF251BBCA000799D58 /* HttpError.swift in Sources */,
 				6DD0427B2518FF7900799D58 /* LoginViewModel.swift in Sources */,
+				6DA36E092AD6F7640079F75D /* AlertErrorViewModifier.swift in Sources */,
 				6DD042F52528C4A500799D58 /* TaskWs.swift in Sources */,
 				6DA36DFF2AD59FFF0079F75D /* User.swift in Sources */,
 				6DD042D72524E67F00799D58 /* Session.swift in Sources */,
