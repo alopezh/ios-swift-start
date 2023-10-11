@@ -16,12 +16,12 @@ class TaskUseCaseTests: XCTestCase {
 
 	private var sut: TasksUseCaseImpl!
 	
-	private var taskApiMock: TaskApiMock!
+	private var taskServiceMock: TaskServiceMock!
 
 	override func setUpWithError() throws {
 		cancelables = []
-        taskApiMock = TaskApiMock()
-        sut = TasksUseCaseImpl(taskApi: taskApiMock)
+		taskServiceMock = TaskServiceMock()
+        sut = TasksUseCaseImpl(taskService: taskServiceMock)
     }
 
     override func tearDownWithError() throws {
@@ -29,17 +29,18 @@ class TaskUseCaseTests: XCTestCase {
     }
 
     func testGivenNewElementsThenSaveAllOfThem() throws {
-		let tasks = [ TaskDM(id: UUID(), name: "Name1", description: "Desc", done: false, modified: false, new: true),
-					  TaskDM(id: UUID(), name: "Name2", description: "Desc", done: false, modified: false, new: true) ]
+		let tasks = [ Task(id: UUID(), name: "Name1", description: "Desc", done: false, modified: false, new: true),
+					  Task(id: UUID(), name: "Name2", description: "Desc", done: false, modified: false, new: true) ]
 
-        taskApiMock.registerCreateTask([Task(id: UUID(), name: "Name1", description: "Desc", done: false), Task(id: UUID(), name: "Name2", description: "Desc", done: false)])
+		taskServiceMock.registerCreateTask([Task(id: UUID(), name: "Name1", description: "Desc", done: false, modified: false, new: true),
+											Task(id: UUID(), name: "Name2", description: "Desc", done: false, modified: false, new: true)])
 
         let responseReceived = expectation(description: "response received")
 
-        var savedTasks: [TaskDM]?
+        var savedTasks: [Task]?
 
         sut.save(tasks: tasks)
-            .catch { error -> AnyPublisher<[TaskDM], Never> in
+            .catch { error -> AnyPublisher<[Task], Never> in
                 XCTFail(error.localizedDescription)
                 return Empty(completeImmediately: true).eraseToAnyPublisher()
             }.sink { saved  in
@@ -50,11 +51,11 @@ class TaskUseCaseTests: XCTestCase {
 
         waitForExpectations(timeout: 1, handler: nil)
 
-        taskApiMock.verifyCreateTask(called: .exact(2))
+		taskServiceMock.verifyCreateTask(called: .exact(2))
 
         savedTasks?.forEach {
             XCTAssertFalse($0.modified)
-            XCTAssertFalse($0.new)
+            XCTAssertTrue($0.new)
         }
 
         XCTAssertEqual(savedTasks?.count, tasks.count)
@@ -62,25 +63,27 @@ class TaskUseCaseTests: XCTestCase {
 }
 
 
-class TaskApiMock: Mocker, TaskApi {
+class TaskServiceMock: Mocker, TaskService {
+
+	
     init() {
         super.init("TaskApiMock")
     }
 
-    func getTasks() -> AnyPublisher<[Task], HttpError> {
-        call("getTasks") as! AnyPublisher<[Task], HttpError>
+    func getTasks() -> AnyPublisher<[Task], Error> {
+        call("getTasks") as! AnyPublisher<[Task], Error>
     }
 
-    func updateTask(id: UUID, _ task: Task) -> AnyPublisher<Task, HttpError> {
-        call("updateTask", params: ["task": task]) as! AnyPublisher<Task, HttpError>
+    func updateTask(id: UUID, _ task: Task) -> AnyPublisher<Task, Error> {
+        call("updateTask", params: ["task": task]) as! AnyPublisher<Task, Error>
     }
-
-    func createTask(_ task: Task) -> AnyPublisher<Task, HttpError> {
-        call("createTask", params: ["task": task]) as! AnyPublisher<Task, HttpError>
-    }
+	
+	func createTask(_ task: Task) -> AnyPublisher<Task, Error> {
+		call("createTask", params: ["task": task]) as! AnyPublisher<Task, Error>
+	}
 
     func registerCreateTask(_ tasks: [Task]) {
-        let publisherTasks = tasks.map { Just($0).setFailureType(to: HttpError.self).eraseToAnyPublisher() }
+        let publisherTasks = tasks.map { Just($0).setFailureType(to: Error.self).eraseToAnyPublisher() }
 
         registerMock("createTask", responses: publisherTasks )
     }

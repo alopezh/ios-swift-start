@@ -18,5 +18,13 @@ class DataAssembly: Assembly {
         container.register(TaskApi.self) { _ in
             TaskApiImpl(baseUrl: Config.value(key: .apiUrl))
         }
+		
+		container.register(UserService.self) { res in
+			UserServiceImpl(userApi: res.resolve(UserApi.self)!)
+		}
+		
+		container.register(TaskService.self) { res in
+			TaskServiceImpl(taskApi: res.resolve(TaskApi.self)!)
+		}
     }
 }

@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Task: Hashable, Codable, Identifiable {
+struct TaskWs: Hashable, Codable, Identifiable {
     var id: UUID
 
     var name: String

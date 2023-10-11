@@ -38,7 +38,7 @@ class TaskViewModel: ObservableObject, Identifiable, Hashable, AlertViewModel {
         self.new = true
     }
 
-    init(task: TaskDM) {
+    init(task: Task) {
         self.name = task.name
         self.done = task.done
         self.description = task.description
@@ -53,7 +53,7 @@ class TaskViewModel: ObservableObject, Identifiable, Hashable, AlertViewModel {
         tasksUseCase.update(task: toDomain())
         .subscribe(on: DispatchQueue.global(qos: .background))
         .receive(on: DispatchQueue.main)
-        .catch { error -> AnyPublisher<TaskDM, Never> in
+        .catch { error -> AnyPublisher<Task, Never> in
             self.error = error
             return Empty(completeImmediately: true).eraseToAnyPublisher()
         }.handleEvents( receiveCompletion: { [weak self] _ in
@@ -73,7 +73,7 @@ class TaskViewModel: ObservableObject, Identifiable, Hashable, AlertViewModel {
         hasher.combine(id)
     }
 
-    private func load(task: TaskDM) {
+    private func load(task: Task) {
         self.name = task.name
         self.done = task.done
         self.description = task.description
@@ -81,7 +81,7 @@ class TaskViewModel: ObservableObject, Identifiable, Hashable, AlertViewModel {
         self.modified = task.modified
     }
 
-    func toDomain() -> TaskDM {
-        TaskDM(id: id, name: name, description: description, done: done, modified: modified, new: new)
+    func toDomain() -> Task {
+        Task(id: id, name: name, description: description, done: done, modified: modified, new: new)
     }
 }

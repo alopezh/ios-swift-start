@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct TaskDM {
+struct Task {
     var id: UUID
 
     var name: String

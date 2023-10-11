@@ -10,21 +10,21 @@ import Foundation
 import Combine
 
 protocol TaskApi {
-    func getTasks() -> AnyPublisher<[Task], Error>
-    func updateTask(id: UUID, _ task: Task) -> AnyPublisher<Task, Error>
-    func createTask(_ task: Task) -> AnyPublisher<Task, Error>
+    func getTasks() -> AnyPublisher<[TaskWs], Error>
+    func updateTask(id: UUID, _ task: TaskWs) -> AnyPublisher<TaskWs, Error>
+    func createTask(_ task: TaskWs) -> AnyPublisher<TaskWs, Error>
 }
 
 class TaskApiImpl: CombineHttpApiRequest, TaskApi {
-    func getTasks() -> AnyPublisher<[Task], Error> {
+    func getTasks() -> AnyPublisher<[TaskWs], Error> {
         get(path: "/task")
     }
 
-    func updateTask(id: UUID, _ task: Task) -> AnyPublisher<Task, Error> {
+    func updateTask(id: UUID, _ task: TaskWs) -> AnyPublisher<TaskWs, Error> {
         put(path: "/task", id: id.uuidString, body: task)
     }
 
-    func createTask(_ task: Task) -> AnyPublisher<Task, Error> {
+    func createTask(_ task: TaskWs) -> AnyPublisher<TaskWs, Error> {
         post(path: "/task", body: task)
     }
 }

@@ -66,7 +66,7 @@ class TaskListViewModel: ObservableObject, AlertViewModel {
             .store(in: &cancelables)
     }
 
-    private func map(task: TaskDM) -> TaskViewModel {
+    private func map(task: Task) -> TaskViewModel {
         let tvm = TaskViewModel(task: task)
         tvm.objectWillChange
             .sink { self.objectWillChange.send() }

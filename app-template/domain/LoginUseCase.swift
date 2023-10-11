@@ -14,12 +14,12 @@ protocol LoginUseCase {
 }
 
 class LoginUseCaseImpl: LoginUseCase {
-    private let userApi: UserApi
+    private let userService: UserService
 
     private let sessionUseCase: SessionUseCase
 
-    init(userApi: UserApi, sessionUseCase: SessionUseCase) {
-        self.userApi = userApi
+    init(userService: UserService, sessionUseCase: SessionUseCase) {
+        self.userService = userService
         self.sessionUseCase = sessionUseCase
     }
 
@@ -35,7 +35,7 @@ class LoginUseCaseImpl: LoginUseCase {
     // No cycles!
 
     func login(user: User) -> AnyPublisher<User, Error> {
-        userApi.login(user: user).map { [sessionUseCase] user in
+        userService.login(user: user).map { [sessionUseCase] user in
             sessionUseCase.createSession(token: "Token")
             return user
         }.eraseToAnyPublisher()

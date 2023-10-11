@@ -10,11 +10,11 @@ import Foundation
 import Combine
 
 protocol UserApi {
-    func login(user: User) -> AnyPublisher<User, Error>
+    func login(user: UserWs) -> AnyPublisher<UserWs, Error>
 }
 
 class UserApiImpl: CombineHttpApiRequest, UserApi {
-    func login(user: User) -> AnyPublisher<User, Error> {
+    func login(user: UserWs) -> AnyPublisher<UserWs, Error> {
         post(path: "/user/login", body: user)
     }
 }

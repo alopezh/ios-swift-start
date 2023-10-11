@@ -10,36 +10,33 @@ import Foundation
 import Combine
 
 protocol TasksUseCase {
-    func getTasks() -> AnyPublisher<[TaskDM], DomainError>
-    func update(task: TaskDM) -> AnyPublisher<TaskDM, DomainError>
-    func save(tasks: [TaskDM]) -> AnyPublisher<[TaskDM], DomainError>
+    func getTasks() -> AnyPublisher<[Task], DomainError>
+    func update(task: Task) -> AnyPublisher<Task, DomainError>
+    func save(tasks: [Task]) -> AnyPublisher<[Task], DomainError>
 }
 
 class TasksUseCaseImpl: TasksUseCase {
-    private let taskApi: TaskApi
+    private let taskService: TaskService
 
-    init(taskApi: TaskApi) {
-        self.taskApi = taskApi
+    init(taskService: TaskService) {
+        self.taskService = taskService
     }
 
-    func getTasks() -> AnyPublisher<[TaskDM], DomainError> {
-        taskApi.getTasks()
-            .map { tasks in
-                tasks.map { TaskMapper.from(data: $0) }
-            }.mapError { error -> DomainError in
+    func getTasks() -> AnyPublisher<[Task], DomainError> {
+		taskService.getTasks()
+			.mapError { error -> DomainError in
                 .network(error: error)
             }.eraseToAnyPublisher()
     }
 
-    func update(task: TaskDM) -> AnyPublisher<TaskDM, DomainError> {
-        taskApi.updateTask(id: task.id, TaskMapper.toData(task))
-            .map { TaskMapper.from(data: $0) }
+    func update(task: Task) -> AnyPublisher<Task, DomainError> {
+		taskService.updateTask(id: task.id, task)
             .mapError { error -> DomainError in
                 .network(error: error)
             }.eraseToAnyPublisher()
     }
 
-    func save(tasks: [TaskDM]) -> AnyPublisher<[TaskDM], DomainError> {
+    func save(tasks: [Task]) -> AnyPublisher<[Task], DomainError> {
         let updates = tasks.filter { $0.modified }
             .map { [weak self] in self?.update(task: $0) ?? Empty().eraseToAnyPublisher() }
 
@@ -51,11 +48,10 @@ class TasksUseCaseImpl: TasksUseCase {
         ).collect().eraseToAnyPublisher()
     }
 
-    func create(task: TaskDM) -> AnyPublisher<TaskDM, DomainError> {
-        taskApi.createTask(TaskMapper.toData(task))
-            .map { TaskMapper.from(data: $0) }
+    func create(task: Task) -> AnyPublisher<Task, DomainError> {
+        taskService.createTask(task)
             .mapError { error -> DomainError in
-            .network(error: error)
+				.network(error: error)
             }.eraseToAnyPublisher()
     }
 }

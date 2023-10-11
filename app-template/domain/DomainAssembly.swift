@@ -11,8 +11,9 @@ import Swinject
 
 class DomainAssembly: Assembly {
     func assemble(container: Container) {
+		
         container.register(LoginUseCase.self) { res in
-            LoginUseCaseImpl(userApi: res.resolve(UserApi.self)!,
+			LoginUseCaseImpl(userService: res.resolve(UserService.self)!,
                              sessionUseCase: res.resolve(SessionUseCase.self)!)
         }.inObjectScope(.container)
 
@@ -21,7 +22,7 @@ class DomainAssembly: Assembly {
         }.inObjectScope(.container)
 
         container.register(TasksUseCase.self) { res in
-            TasksUseCaseImpl(taskApi: res.resolve(TaskApi.self)!)
+            TasksUseCaseImpl(taskService: res.resolve(TaskService.self)!)
         }.inObjectScope(.container)
     }
 }
